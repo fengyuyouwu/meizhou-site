@@ -12,6 +12,8 @@
 
 ## 在线体验
 
+- **Cloudflare Pages**：<https://meizhou-site.pages.dev>
+- **GitHub Pages**：<https://fengyuyouwu.github.io/meizhou-site/>
 - **本地**：解压后**双击 `index.html`** 即可完整浏览——零依赖、无需联网、无需服务器。
 - **本地服务器**（推荐，行为更接近线上）：
 
