@@ -9,6 +9,19 @@ document.addEventListener('DOMContentLoaded', () => {
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* ---------- 背景图懒加载 ---------- */
+  /* WebP 支持探测：只探一次，避免每张图重复建 canvas */
+  const webpOK = (() => {
+    try {
+      const c = document.createElement('canvas');
+      c.width = c.height = 1;
+      return c.toDataURL('image/webp').indexOf('data:image/webp') === 0;
+    } catch (e) { return false; }
+  })();
+  const pickBg = (src) => {
+    if (!webpOK || !src) return src;
+    return src.replace(/\.jpe?g$/i, '.webp');
+  };
+
   const lazyBgs = document.querySelectorAll('[data-bg]');
   if ('IntersectionObserver' in window && lazyBgs.length) {
     const io = new IntersectionObserver((entries, obs) => {
@@ -16,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!entry.isIntersecting) return;
         const el = entry.target;
         obs.unobserve(el);
-        const src = el.dataset.bg;
+        const src = pickBg(el.dataset.bg);
         if (!src) return;
         const probe = new Image();
         probe.onload = () => {

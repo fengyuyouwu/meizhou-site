@@ -346,6 +346,7 @@ body {
 .card__thumb--img { background-size: cover; background-position: center; height: 160px; }
 
 .banner { margin-bottom: 46px; }
+.banner__pic { display: contents; }
 .banner img {
   width: 100%; height: 340px; object-fit: cover; border-radius: 10px;
   display: block; box-shadow: 0 8px 28px rgba(122, 82, 54, .12);
@@ -721,6 +722,9 @@ body {
       <source type="image/avif"
               srcset="assets/img/hero-weilong-640.avif 640w, assets/img/hero-weilong-1280.avif 1280w, assets/img/hero-weilong-1920.avif 1920w"
               sizes="100vw">
+      <source type="image/webp"
+              srcset="assets/img/hero-weilong-640.webp 640w, assets/img/hero-weilong-1600.webp 1600w"
+              sizes="100vw">
       <img class="hero__photo" src="assets/img/hero-weilong.jpg" width="1600" height="1067"
            fetchpriority="high" decoding="async"
            alt="清晨薄雾中的客家土楼群">
@@ -898,7 +902,10 @@ body {
 
       <!-- 实景横幅 -->
       <figure class="banner reveal">
-        <img src="assets/img/weilongwu.jpg" alt="梅州客家民居群航拍" width="1100" height="839" loading="lazy" decoding="async">
+        <picture class="banner__pic">
+          <source type="image/webp" srcset="assets/img/weilongwu.webp">
+          <img src="assets/img/weilongwu.jpg" alt="梅州客家民居群航拍" width="1100" height="839" loading="lazy" decoding="async">
+        </picture>
         <figcaption>梅州客家民居群落 · Wikimedia Commons（CC BY-SA 3.0 / Shi Annan）</figcaption>
       </figure>
 
