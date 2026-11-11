@@ -145,7 +145,7 @@ body {
 }
 .hero__credit {
   position: absolute; right: 16px; bottom: 14px; z-index: 2;
-  font-size: .72rem; letter-spacing: .06em;
+  font-size: .75rem; letter-spacing: .06em;
   color: rgba(247, 242, 231, .62);
 }
 
@@ -176,6 +176,7 @@ body {
 .hero__title .dot { color: var(--cinnabar); }
 .hero__sub {
   margin-top: 16px; color: #D8CDB8; font-size: clamp(.95rem, 2vw, 1.15rem); letter-spacing: .12em;
+  text-wrap: balance;
 }
 .hero__hint {
   position: absolute; bottom: 34px; left: 50%; transform: translateX(-50%);
@@ -352,8 +353,8 @@ body {
   display: block; box-shadow: 0 8px 28px rgba(122, 82, 54, .12);
   background: var(--paper-dark);
 }
-.banner figcaption { font-size: .78rem; color: var(--ink-soft); margin-top: 8px; text-align: center; }
-.img-note { font-size: .78rem; color: var(--ink-soft); margin-top: 16px; text-align: center; }
+.banner figcaption { font-size: .82rem; color: var(--ink-soft); margin-top: 8px; text-align: center; }
+.img-note { font-size: .82rem; color: var(--ink-soft); margin-top: 16px; text-align: center; }
 .food__img { height: 132px; border-radius: 8px; background-size: cover; background-position: center; margin-bottom: 10px; }
 
 /* ---------- 背景图懒加载幕帘 ---------- */
@@ -534,7 +535,7 @@ body {
   font-size: 2.8rem; background: var(--paper-dark);
 }
 .food h3 { font-family: var(--font-kai); font-size: 1.15rem; letter-spacing: .08em; margin-bottom: 4px; }
-.food__meta { font-size: .78rem; color: var(--cinnabar); letter-spacing: .1em; margin-bottom: 6px; }
+.food__meta { font-size: .82rem; color: var(--cinnabar); letter-spacing: .1em; margin-bottom: 6px; }
 .food p { font-size: .9rem; color: var(--ink-soft); }
 
 .dict { margin-top: 60px; text-align: center; }
@@ -591,6 +592,17 @@ body {
   color: var(--cinnabar); border-left: 1px dashed #5C6B76; border-right: 1px dashed #5C6B76;
 }
 .chapter--final .dual__bridge { color: #E4736B; }
+.dual__bridge__text { display: block; transition: color .3s ease, opacity .3s ease; }
+.dual.has-link .dual__bridge__text { color: #E4736B; }
+.timeline li { transition: opacity .3s ease, transform .3s ease; outline-offset: 4px; }
+.dual.has-link .timeline li:not(.is-linked) { opacity: .38; }
+.timeline li.is-linked { transform: translateX(4px); }
+.timeline li.is-linked .timeline__time {
+  border-color: var(--cinnabar);
+  background: rgba(195, 39, 43, .22);
+  color: #F2D9C8;
+}
+.dict__note { margin: -10px 0 22px; font-size: .82rem; color: var(--ink-soft); text-align: center; letter-spacing: .02em; }
 
 .closing { text-align: center; padding: 30px 0 10px; }
 .closing__text { font-family: var(--font-kai); font-size: clamp(1.2rem, 3vw, 1.7rem); line-height: 2.3; letter-spacing: .14em; color: #F2EAD8; }
@@ -620,12 +632,12 @@ body {
 
 .footer { text-align: center; padding: 80px 20px 40px; color: #96A4B0; font-size: .85rem; letter-spacing: .15em; }
 .footer p:first-child { font-family: var(--font-kai); font-size: 1rem; color: #A7B2BB; margin-bottom: 6px; }
-.footer__note { font-size: .78rem; color: #8C9BA6; letter-spacing: .05em; margin-top: 8px; }
+.footer__note { font-size: .82rem; color: #8C9BA6; letter-spacing: .05em; margin-top: 8px; }
 .sources { margin-top: 26px; text-align: left; max-width: 760px; margin-left: auto; margin-right: auto; border: 1px solid #4A5866; border-radius: 10px; padding: 0 18px; }
 .sources summary { cursor: pointer; padding: 12px 0; letter-spacing: .12em; color: #A7B2BB; font-size: .85rem; }
 .sources ol { padding-left: 22px; margin: 0 0 16px; }
-.sources li { font-size: .78rem; line-height: 1.9; color: #8C9BA6; letter-spacing: .02em; }
-.board__note { margin-top: 12px; font-size: .78rem; color: #8C9BA6; letter-spacing: .04em; line-height: 1.8; }
+.sources li { font-size: .82rem; line-height: 1.9; color: #8C9BA6; letter-spacing: .02em; }
+.board__note { margin-top: 12px; font-size: .82rem; color: #8C9BA6; letter-spacing: .04em; line-height: 1.8; }
 
 /* ---------- 入场动效（CSS 滚动驱动；不支持的浏览器内容直接可见） ---------- */
 @media (prefers-reduced-motion: no-preference) {
@@ -669,14 +681,14 @@ body {
 }
 @media (max-width: 560px) {
   .topbar { padding: 8px 8px; }
-  .topbar__mark { font-size: .78rem; letter-spacing: .02em; white-space: nowrap; }
+  .topbar__mark { font-size: .82rem; letter-spacing: .02em; white-space: nowrap; }
   .topbar__nav { white-space: nowrap; }
   .topbar__nav a {
     display: inline-flex; align-items: center; justify-content: center;
     min-width: 24px; min-height: 24px;
-    margin-left: 4px; font-size: .72rem; padding: 2px 3px;
+    margin-left: 4px; font-size: .78rem; padding: 2px 3px;
   }
-  .hero__credit { font-size: .6rem; letter-spacing: .04em; }
+  .hero__credit { font-size: .75rem; letter-spacing: .04em; max-width: 92vw; line-height: 1.8; }
   .mc__img { height: 220px; }
   .map-box { height: 330px; }
   .plan-dots { display: none; }
@@ -921,23 +933,33 @@ body {
         <div class="plan-body">
           <svg viewBox="0 0 520 300" aria-label="围龙屋平面示意，各部件可点击查看说明">
             <g class="plan__hot" data-part="pond" tabindex="0" role="button" aria-label="半月池塘：聚水为鉴，也聚财气">
+              <title>半月池塘</title>
+              <desc>聚水为鉴，也聚财气；水面倒影让围屋「前低后高」的格局成立</desc>
               <path class="plan__pond" d="M60,240 A200,46 0 0 0 460,240 Z"/>
               <rect class="plan__hit" x="40" y="214" width="440" height="48"/>
             </g>
             <g class="plan__hot" data-part="ping" tabindex="0" role="button" aria-label="禾坪：晒谷议事的地方">
+              <title>禾坪</title>
+              <desc>晒谷、议事、孩童奔跑的地方——围屋的公共广场</desc>
               <rect class="plan__ping" x="120" y="180" width="280" height="46" rx="4"/>
               <rect class="plan__hit" x="112" y="168" width="296" height="66"/>
             </g>
             <g class="plan__hot" data-part="hall" tabindex="0" role="button" aria-label="堂屋：上堂祭祖、中堂议事、下堂迎客">
+              <title>堂屋</title>
+              <desc>上堂祭祖、中堂议事、下堂迎客——中轴线是整座围屋的脊梁</desc>
               <rect class="plan__hall" x="190" y="120" width="140" height="52" rx="3"/>
               <rect class="plan__hall" x="205" y="82" width="110" height="30" rx="3"/>
               <rect class="plan__hit" x="182" y="70" width="156" height="108"/>
             </g>
             <g class="plan__hot" data-part="huatai" tabindex="0" role="button" aria-label="化胎：隆起承龙气的龟背土台">
+              <title>化胎</title>
+              <desc>隆起的龟背土台，客家人说它承「龙气」、化育子孙</desc>
               <path class="plan__huatai" d="M205,82 A55,44 0 0 1 315,82 Z"/>
               <rect class="plan__hit" x="190" y="26" width="140" height="64"/>
             </g>
             <g class="plan__hot" data-part="long" tabindex="0" role="button" aria-label="围龙间：弧形房间环抱一族">
+              <title>围龙间</title>
+              <desc>弧形房间环抱一族，房间数随族丁增减，人丁旺则围龙长</desc>
               <path class="plan__long" d="M110,120 A150,118 0 0 1 410,120 L380,120 A120,92 0 0 0 140,120 Z"/>
               <rect class="plan__hit" x="96" y="0" width="328" height="124"/>
             </g>
@@ -1197,6 +1219,7 @@ body {
       <!-- 客家话小词典 -->
       <div class="dict reveal">
         <h3 class="dict__title">客家话小词典 <span>· 点击翻牌</span></h3>
+        <p class="dict__note">注：「𠊎」是客家人为「我」造的形声字——若你的设备把它显示成方框，恰好说明这场正名还在路上。</p>
         <div class="dict__grid">
           <button class="flip" data-mean="「𠊎系客家人」——客家话的「我」"><span class="flip__char">𠊎</span><span class="flip__pinyin">ngai</span></button>
           <button class="flip" data-mean="吃早饭"><span class="flip__char">食朝</span><span class="flip__pinyin">siid zau</span></button>
@@ -1268,20 +1291,20 @@ body {
         <div class="dual__col">
           <h3>梅州 · 围屋里的学堂</h3>
           <ul class="timeline">
-            <li><span class="timeline__time">明清</span><p>围屋上堂设蒙馆，祠堂楹联劝学，宗族供子弟读书</p></li>
-            <li><span class="timeline__time">近代</span><p>新学入梅，学堂书院遍布山间城乡</p></li>
-            <li><span class="timeline__time">2023</span><p>获评「东亚文化之都」，建成国家级客家文化（梅州）生态保护区</p></li>
+            <li tabindex="0" data-link="g1"><span class="timeline__time">明清</span><p>围屋上堂设蒙馆，祠堂楹联劝学，宗族供子弟读书</p></li>
+            <li tabindex="0" data-link="g2"><span class="timeline__time">近代</span><p>新学入梅，学堂书院遍布山间城乡</p></li>
+            <li tabindex="0" data-link="g4"><span class="timeline__time">2023</span><p>获评「东亚文化之都」，建成国家级客家文化（梅州）生态保护区</p></li>
           </ul>
         </div>
-        <div class="dual__bridge">同一个书桌</div>
+        <div class="dual__bridge"><span class="dual__bridge__text" id="bridgeText">同一个书桌</span></div>
         <div class="dual__col">
           <h3>广州大学 · 百年弦歌</h3>
           <ul class="timeline">
             <!-- 校史节点依据：广州大学官网《学校简介》、档案馆《广州大学简史》、学校章程 -->
-            <li><span class="timeline__time">1927</span><p>陈炳权等创办私立广州大学，「博学笃行」由此立训</p></li>
-            <li><span class="timeline__time">1938-45</span><p>抗战烽火中七度迁徙办学，弦歌不辍</p></li>
-            <li><span class="timeline__time">2000</span><p>五校合并，组建新的广州大学</p></li>
-            <li><span class="timeline__time">2027</span><p>建校一百周年，百年薪火，赓续华章</p></li>
+            <li tabindex="0" data-link="g1"><span class="timeline__time">1927</span><p>陈炳权等创办私立广州大学，「博学笃行」由此立训</p></li>
+            <li tabindex="0" data-link="g2"><span class="timeline__time">1938-45</span><p>抗战烽火中七度迁徙办学，弦歌不辍</p></li>
+            <li tabindex="0" data-link="g3"><span class="timeline__time">2000</span><p>五校合并，组建新的广州大学</p></li>
+            <li tabindex="0" data-link="g4"><span class="timeline__time">2027</span><p>建校一百周年，百年薪火，赓续华章</p></li>
           </ul>
         </div>
       </div>
@@ -1334,7 +1357,7 @@ body {
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
   <script src="assets/js/main.js?v=7"></script>
-  <script src="assets/js/interactions.js?v=9"></script>
+  <script src="assets/js/interactions.js?v=10"></script>
   <script src="assets/js/ambient.js?v=1"></script>
   <script src="assets/js/loader.js?v=1"></script>
   <script defer src="assets/js/migration-map.js?v=3"></script>

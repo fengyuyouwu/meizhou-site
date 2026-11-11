@@ -167,6 +167,36 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  /* ---------- 柒章 · 双时间轴联动（提案 C） ---------- */
+  const dual = document.querySelector('.dual');
+  if (dual) {
+    const bridgeText = dual.querySelector('.dual__bridge__text');
+    const DEFAULT_BRIDGE = bridgeText ? bridgeText.textContent : '同一个书桌';
+    const LINKS = {
+      g1: '山间的蒙馆与广州的私立大学——崇文重教，一脉两枝',
+      g2: '新学在山乡扎根；烽火里，这所大学把书声背了七程',
+      g3: '五校合一：山里的学子从此有了直达的校门',
+      g4: '文化之都戴上桂冠，百年校庆点亮薪火'
+    };
+    const items = dual.querySelectorAll('.timeline li[data-link]');
+    const setLink = (key) => {
+      items.forEach((li) => li.classList.toggle('is-linked', li.dataset.link === key));
+      dual.classList.add('has-link');
+      if (bridgeText && LINKS[key]) bridgeText.textContent = LINKS[key];
+    };
+    const clearLink = () => {
+      items.forEach((li) => li.classList.remove('is-linked'));
+      dual.classList.remove('has-link');
+      if (bridgeText) bridgeText.textContent = DEFAULT_BRIDGE;
+    };
+    items.forEach((li) => {
+      li.addEventListener('pointerenter', () => setLink(li.dataset.link));
+      li.addEventListener('focus', () => setLink(li.dataset.link));
+      li.addEventListener('pointerleave', clearLink);
+      li.addEventListener('blur', clearLink);
+    });
+  }
+
   /* ---------- 柒章 · 文化名片生成器 ---------- */
   const cardBox = document.querySelector('.card-maker');
   if (cardBox) {
