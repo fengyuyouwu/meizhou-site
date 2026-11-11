@@ -1,8 +1,10 @@
 /* ==========================================================
-   背景微动效（渐进增强）
-   - 序章：香火微尘（暖色微粒缓缓上浮，呼应火龙与香火）
-   - 柒章：萤火（暗夜中的微光明灭，呼应"月照客都"）
-   - 尊重系统"减少动态"；滚出视口/切后台自动暂停；粒子数按面积缩放
+   背景微动效（渐进增强，全站三主题）
+   - ember  香火微尘：深色照片底（序章），暖色上浮
+   - firefly 萤火：暗色终章，微光明灭游移
+   - ink    墨尘：浅色宣纸章节，深色微粒缓缓沉降
+   - 滚出视口自动暂停 / 切后台暂停 / 尊重「减少动效」
+   - 粒子数按面积缩放，DPR 上限 2
    ========================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -11,77 +13,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const DPR = Math.min(window.devicePixelRatio || 1, 2);
   const rand = (a, b) => a + Math.random() * (b - a);
-  window.__ambientFx = window.__ambientFx || {};
 
-  function makeField(canvas, config, handle) {
-    if (!canvas || !canvas.getContext) return;
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-
-    let W = 0, H = 0, parts = [], raf = 0, running = false, last = 0;
-
-    function resize() {
-      const r = canvas.getBoundingClientRect();
-      W = Math.max(1, r.width);
-      H = Math.max(1, r.height);
-      canvas.width = Math.round(W * DPR);
-      canvas.height = Math.round(H * DPR);
-      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
-      const n = Math.min(config.max, Math.max(8, Math.round((W * H) / config.density)));
-      parts = Array.from({ length: n }, () => config.spawn(rand, true, W, H));
-      handle.count = parts.length;
-    }
-
-    function frame(now) {
-      if (!running) return;
-      const dt = Math.min((now - last) / 16.7, 3);
-      last = now;
-      ctx.clearRect(0, 0, W, H);
-      parts.forEach((p) => {
-        config.step(p, dt, rand, W, H, now);
-        config.draw(ctx, p, now);
-      });
-      raf = requestAnimationFrame(frame);
-    }
-
-    function play() {
-      if (running) return;
-      running = true;
-      handle.running = true;
-      last = performance.now();
-      raf = requestAnimationFrame(frame);
-    }
-    function pause() {
-      running = false;
-      handle.running = false;
-      cancelAnimationFrame(raf);
-    }
-
-    function start() {
-      resize();
-      play();
-      window.addEventListener('resize', () => { resize(); if (running) { pause(); play(); } });
-      const io = new IntersectionObserver((entries) => {
-        entries.forEach((e) => (e.isIntersecting ? play() : pause()));
-      }, { threshold: 0.02 });
-      io.observe(canvas);
-      document.addEventListener('visibilitychange', () => {
-        document.hidden ? pause() : play();
-      });
-    }
-    start();
-  }
-
-  /* ---------- 序章 · 香火微尘 ---------- */
-  const heroCanvas = document.querySelector('.hero__fx');
-  if (heroCanvas) {
-    window.__ambientFx.hero = { running: false, count: 0 };
-    makeField(heroCanvas, {
-      max: 60,
-      density: 20000,
-      spawn: (rand, initial, W, H) => ({
+  const THEMES = {
+    ember: {
+      max: 60, density: 20000,
+      spawn: (rand, init, W, H) => ({
         x: rand(0, W),
-        y: initial ? rand(0, H) : H + rand(4, 30),
+        y: init ? rand(0, H) : H + rand(4, 30),
         r: rand(0.6, 2.4),
         vy: rand(0.18, 0.6),
         sway: rand(0.4, 1.4),
@@ -106,17 +44,10 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.shadowBlur = 0;
         ctx.globalAlpha = 1;
       }
-    }, window.__ambientFx.hero);
-  }
-
-  /* ---------- 柒章 · 萤火 ---------- */
-  const finalCanvas = document.querySelector('.final-fx');
-  if (finalCanvas) {
-    window.__ambientFx.final = { running: false, count: 0 };
-    makeField(finalCanvas, {
-      max: 34,
-      density: 32000,
-      spawn: (rand, initial, W, H) => ({
+    },
+    firefly: {
+      max: 34, density: 32000,
+      spawn: (rand, init, W, H) => ({
         x: rand(0, W),
         y: rand(0, H),
         r: rand(1, 2.3),
@@ -148,6 +79,118 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.shadowBlur = 0;
         ctx.globalAlpha = 1;
       }
-    }, window.__ambientFx.final);
+    },
+    ink: {
+      max: 36, density: 45000,
+      spawn: (rand, init, W, H) => ({
+        x: rand(0, W),
+        y: init ? rand(0, H) : rand(-40, -6),
+        r: rand(0.5, 1.6),
+        vy: rand(0.05, 0.18),
+        phase: rand(0, Math.PI * 2),
+        alpha: rand(0.05, 0.15),
+        color: Math.random() < 0.3 ? '#A0714F' : '#3E4A52'
+      }),
+      step: (p, dt, rand, W, H, now) => {
+        p.y += p.vy * dt;
+        p.x += Math.sin(now * 0.0006 + p.phase) * 0.1 * dt;
+        if (p.y > H + 10) { p.y = -10; p.x = rand(0, W); }
+        if (p.x < -10) p.x = W + 10; if (p.x > W + 10) p.x = -10;
+      },
+      draw: (ctx, p) => {
+        ctx.globalAlpha = p.alpha;
+        ctx.fillStyle = p.color;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.globalAlpha = 1;
+      }
+    }
+  };
+
+  function makeField(canvas, theme, handle) {
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+    let W = 0, H = 0, parts = [], raf = 0, running = false, last = 0;
+
+    function resize() {
+      const r = canvas.getBoundingClientRect();
+      W = Math.max(1, r.width);
+      H = Math.max(1, r.height);
+      canvas.width = Math.round(W * DPR);
+      canvas.height = Math.round(H * DPR);
+      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+      const n = Math.min(theme.max, Math.max(6, Math.round((W * H) / theme.density)));
+      parts = Array.from({ length: n }, () => theme.spawn(rand, true, W, H));
+      handle.count = parts.length;
+    }
+
+    function frame(now) {
+      if (!running) return;
+      const dt = Math.min((now - last) / 16.7, 3);
+      last = now;
+      ctx.clearRect(0, 0, W, H);
+      parts.forEach((p) => {
+        theme.step(p, dt, rand, W, H, now);
+        theme.draw(ctx, p, now);
+      });
+      raf = requestAnimationFrame(frame);
+    }
+
+    function play() {
+      if (running) return;
+      running = true;
+      handle.running = true;
+      last = performance.now();
+      raf = requestAnimationFrame(frame);
+    }
+    function pause() {
+      running = false;
+      handle.running = false;
+      cancelAnimationFrame(raf);
+    }
+
+    function start() {
+      resize();
+      play();
+      let rt = null;
+      window.addEventListener('resize', () => {
+        clearTimeout(rt);
+        rt = setTimeout(() => { resize(); if (running) { pause(); play(); } }, 200);
+      });
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => (e.isIntersecting ? play() : pause()));
+      }, { threshold: 0.02 });
+      io.observe(canvas);
+      document.addEventListener('visibilitychange', () => {
+        document.hidden ? pause() : play();
+      });
+    }
+    start();
   }
+
+  document.querySelectorAll('[data-fx]').forEach((host, i) => {
+    try {
+      const theme = THEMES[host.dataset.fx];
+      if (!theme) {
+        window.__ambientSkip = (window.__ambientSkip || []).concat([(host.id || i) + ':no-theme:' + host.dataset.fx]);
+        return;
+      }
+      let canvas = host.querySelector('canvas');
+      if (!canvas) {
+        canvas = document.createElement('canvas');
+        canvas.className = 'fx-canvas';
+        canvas.setAttribute('aria-hidden', 'true');
+        host.prepend(canvas);
+      }
+      const handle = { running: false, count: 0 };
+      window.__ambientFx = window.__ambientFx || {};
+      window.__ambientFx[host.dataset.fx + '_' + i] = handle;
+      makeField(canvas, theme, handle);
+    } catch (e) {
+      window.__ambientErrors = window.__ambientErrors || [];
+      window.__ambientErrors.push((host.id || i) + ': ' + e.message);
+      console.error('[ambient]', host.id || i, e);
+    }
+  });
 });

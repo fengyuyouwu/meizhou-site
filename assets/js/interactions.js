@@ -170,8 +170,7 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ---------- 柒章 · 双时间轴联动（提案 C） ---------- */
   const dual = document.querySelector('.dual');
   if (dual) {
-    const bridgeText = dual.querySelector('.dual__bridge__text');
-    const DEFAULT_BRIDGE = bridgeText ? bridgeText.textContent : '同一个书桌';
+    const caption = document.getElementById('dualCaption');
     const LINKS = {
       g1: '山间的蒙馆与广州的私立大学——崇文重教，一脉两枝',
       g2: '新学在山乡扎根；烽火里，这所大学把书声背了七程',
@@ -182,12 +181,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const setLink = (key) => {
       items.forEach((li) => li.classList.toggle('is-linked', li.dataset.link === key));
       dual.classList.add('has-link');
-      if (bridgeText && LINKS[key]) bridgeText.textContent = LINKS[key];
+      if (caption) {
+        caption.textContent = LINKS[key];
+        caption.classList.add('is-show');
+      }
     };
     const clearLink = () => {
       items.forEach((li) => li.classList.remove('is-linked'));
       dual.classList.remove('has-link');
-      if (bridgeText) bridgeText.textContent = DEFAULT_BRIDGE;
+      if (caption) caption.classList.remove('is-show');
     };
     items.forEach((li) => {
       li.addEventListener('pointerenter', () => setLink(li.dataset.link));

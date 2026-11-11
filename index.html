@@ -149,17 +149,17 @@ body {
   color: rgba(247, 242, 231, .62);
 }
 
-/* ---------- 背景微动效画布 ---------- */
-.hero__fx, .final-fx {
+/* ---------- 背景微动效画布（全站三种主题） ---------- */
+.fx-canvas, .hero__fx, .final-fx {
   position: absolute; inset: 0; width: 100%; height: 100%;
   pointer-events: none;
 }
 .hero__fx { z-index: 1; }
-.final-fx { z-index: 0; }
-.chapter--final .chapter__inner,
-.chapter--final .footer { position: relative; z-index: 1; }
+.fx-canvas, .final-fx { z-index: 0; }
+.chapter .chapter__inner,
+.chapter .footer { position: relative; z-index: 1; }
 @media (prefers-reduced-motion: reduce) {
-  .hero__fx, .final-fx { display: none; }
+  .hero__fx, .final-fx, .fx-canvas { display: none; }
 }
 
 .hero__content { position: relative; z-index: 2; padding: 0 20px; margin-top: -12vh; }
@@ -592,11 +592,10 @@ body {
   color: var(--cinnabar); border-left: 1px dashed #5C6B76; border-right: 1px dashed #5C6B76;
 }
 .chapter--final .dual__bridge { color: #E4736B; }
-.dual__bridge__text { display: block; transition: color .3s ease, opacity .3s ease; }
-.dual.has-link .dual__bridge__text { color: #E4736B; }
-.timeline li { transition: opacity .3s ease, transform .3s ease; outline-offset: 4px; }
+.dual__bridge__text { display: block; }
+.timeline li { transition: opacity .3s ease, background-color .3s ease; outline-offset: 4px; }
 .dual.has-link .timeline li:not(.is-linked) { opacity: .38; }
-.timeline li.is-linked { transform: translateX(4px); }
+.timeline li.is-linked { background: rgba(195, 39, 43, .07); border-radius: 8px; }
 .timeline li.is-linked .timeline__time {
   border-color: var(--cinnabar);
   background: rgba(195, 39, 43, .22);
@@ -739,7 +738,7 @@ body {
   </aside>
 
   <!-- ═══════════ 序章 · 客都印象 ═══════════ -->
-  <section class="hero" id="sec-0">
+  <section class="hero" id="sec-0" data-fx="ember">
     <picture class="hero__media">
       <source type="image/avif"
               srcset="assets/img/hero-weilong-640.avif 640w, assets/img/hero-weilong-1280.avif 1280w, assets/img/hero-weilong-1920.avif 1920w"
@@ -851,7 +850,7 @@ body {
   </section>
 
   <!-- ═══════════ 壹 · 客从何来 ═══════════ -->
-  <section class="chapter" id="sec-1">
+  <section class="chapter" id="sec-1" data-fx="ink">
     <div class="chapter__inner">
       <p class="chapter__no">壹</p>
       <p class="chapter-side" aria-hidden="true">四海为家</p>
@@ -915,7 +914,7 @@ body {
   </section>
 
   <!-- ═══════════ 贰 · 围屋岁月 ═══════════ -->
-  <section class="chapter chapter--tint" id="sec-2">
+  <section class="chapter chapter--tint" id="sec-2" data-fx="ink">
     <div class="chapter__inner">
       <p class="chapter__no">贰</p>
       <p class="chapter-side" aria-hidden="true">聚族于斯</p>
@@ -1040,7 +1039,7 @@ body {
   </section>
 
   <!-- ═══════════ 叁 · 崇文重教 ═══════════ -->
-  <section class="chapter" id="sec-3">
+  <section class="chapter" id="sec-3" data-fx="ink">
     <div class="chapter__inner">
       <p class="chapter__no">叁</p>
       <p class="chapter-side" aria-hidden="true">耕读传家</p>
@@ -1085,7 +1084,7 @@ body {
   </section>
 
   <!-- ═══════════ 肆 · 非遗之声 ═══════════ -->
-  <section class="chapter chapter--tint" id="sec-4">
+  <section class="chapter chapter--tint" id="sec-4" data-fx="ink">
     <div class="chapter__inner">
       <p class="chapter__no">肆</p>
       <p class="chapter-side" aria-hidden="true">随口成歌</p>
@@ -1147,7 +1146,7 @@ body {
   </section>
 
   <!-- ═══════════ 伍 · 客家烟火 ═══════════ -->
-  <section class="chapter" id="sec-5">
+  <section class="chapter" id="sec-5" data-fx="ink">
     <div class="chapter__inner">
       <p class="chapter__no">伍</p>
       <p class="chapter-side" aria-hidden="true">人间烟火</p>
@@ -1263,7 +1262,7 @@ body {
   </section>
 
   <!-- ═══════════ 陆 · 岁时节庆 ═══════════ -->
-  <section class="chapter chapter--tint" id="sec-6">
+  <section class="chapter chapter--tint" id="sec-6" data-fx="ink">
     <div class="chapter__inner">
       <p class="chapter__no">陆</p>
       <p class="chapter-side" aria-hidden="true">岁时有节</p>
@@ -1308,7 +1307,7 @@ body {
   </section>
 
   <!-- ═══════════ 柒 · 弦歌不辍 ═══════════ -->
-  <section class="chapter chapter--final" id="sec-7">
+  <section class="chapter chapter--final" id="sec-7" data-fx="firefly">
     <canvas class="final-fx" aria-hidden="true"></canvas>
     <div class="chapter__inner">
       <p class="chapter__no">柒</p>
@@ -1340,6 +1339,7 @@ body {
           </ul>
         </div>
       </div>
+      <p class="dual-caption" id="dualCaption" aria-live="polite"></p>
 
       <div class="closing reveal">
         <p class="closing__text"><span class="line">我从围屋的山门，走进大学城的校门。</span><br>
@@ -1389,8 +1389,8 @@ body {
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
   <script src="assets/js/main.js?v=7"></script>
-  <script src="assets/js/interactions.js?v=10"></script>
-  <script src="assets/js/ambient.js?v=1"></script>
+  <script src="assets/js/interactions.js?v=11"></script>
+  <script src="assets/js/ambient.js?v=2"></script>
   <script src="assets/js/loader.js?v=1"></script>
   <script defer src="assets/js/migration-map.js?v=3"></script>
 </body>
