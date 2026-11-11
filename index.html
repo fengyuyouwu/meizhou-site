@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>弦歌出围屋 —— 从围屋到大学堂</title>
+  <meta name="description" content="世界客都·广东梅州 | 弦歌出围屋——从围屋到大学堂 | 广州大学网页设计大赛参赛作品 · 方向三 文化传承网页">
+  <meta property="og:title" content="弦歌出围屋 —— 从围屋到大学堂">
+  <meta property="og:description" content="世界客都·广东梅州 | 一座城的千年书声，与一个学子的百年对话">
+  <meta property="og:image" content="assets/img/hero-weilong.jpg">
+  <meta property="og:type" content="website">
+  <link rel="preload" as="image" href="assets/img/hero-weilong-1280.avif">
+  <link rel="stylesheet" href="assets/css/fonts-regular.css">
+  <link rel="stylesheet" href="assets/css/fonts-bold.css">
+  <link rel="stylesheet" href="assets/css/style.css?v=7">
+</head>
+<body>
+  <a class="skip-link" href="#sec-0">跳到主要内容</a>
+
+  <!-- 滚动进度条 -->
+  <div class="progress-bar" id="progressBar"></div>
+
+  <!-- 顶部标题栏 -->
+  <header class="topbar">
+    <span class="topbar__mark">弦歌出围屋</span>
+    <nav class="topbar__nav">
+      <a href="#sec-0">序</a><a href="#sec-1">壹</a><a href="#sec-2">贰</a>
+      <a href="#sec-3">叁</a><a href="#sec-4">肆</a><a href="#sec-5">伍</a><a href="#sec-6">陆</a><a href="#sec-7">柒</a>
+    </nav>
+  </header>
+
+  <!-- 侧边章节导航 -->
+  <aside class="side-nav" id="sideNav">
+    <a href="#sec-0" data-label="序 · 客都印象"></a>
+    <a href="#sec-1" data-label="壹 · 客从何来"></a>
+    <a href="#sec-2" data-label="贰 · 围屋岁月"></a>
+    <a href="#sec-3" data-label="叁 · 崇文重教"></a>
+    <a href="#sec-4" data-label="肆 · 非遗之声"></a>
+    <a href="#sec-5" data-label="伍 · 客家烟火"></a>
+    <a href="#sec-6" data-label="陆 · 岁时节庆"></a>
+    <a href="#sec-7" data-label="柒 · 弦歌不辍"></a>
+  </aside>
+
+  <!-- ═══════════ 序章 · 客都印象 ═══════════ -->
+  <section class="hero" id="sec-0">
+    <img class="hero__photo" src="assets/img/hero-weilong-1280.avif"
+         srcset="assets/img/hero-weilong-640.avif 640w, assets/img/hero-weilong-1280.avif 1280w, assets/img/hero-weilong-1920.avif 1920w"
+         sizes="100vw" width="1920" height="1280" fetchpriority="high"
+         alt="清晨薄雾中的客家土楼群">
+    <div class="hero__shade"></div>
+    <canvas class="hero__fx" aria-hidden="true"></canvas>
+    <span class="hero__credit">客家土楼晨曦 · 示意图 · Wikimedia Commons（CC BY-SA 3.0 / Zhangzhugang）</span>
+    <div class="hero__content">
+      <p class="hero__kicker">世界客都 · 广东梅州</p>
+      <h1 class="hero__title">弦歌出围屋</h1>
+      <p class="hero__sub">一座城的千年书声，与一个学子的百年对话</p>
+    </div>
+    <div class="hero__hint">
+      <span>向下滚动，走进围屋</span>
+      <span class="arrow">↓</span>
+    </div>
+  </section>
+
+  <!-- ═══════════ 水墨长卷 · 入卷 ═══════════ -->
+  <section class="scroll-painting" id="painting">
+    <div class="painting-sticky">
+      <div class="painting-strip" id="paintingStrip">
+        <svg viewBox="0 0 2400 800" role="img" aria-label="水墨长卷：从围屋到远洋">
+          <!-- 远山（视差远景层） -->
+          <g id="pFar">
+            <path d="M1330,452 C1520,330 1700,392 1880,306 C2020,242 2160,332 2330,300 L2330,540 L1330,540 Z" fill="#3E4A52" opacity="0.14"/>
+            <path d="M1420,486 C1580,396 1760,440 1930,368 C2070,310 2200,380 2320,356 L2320,560 L1420,560 Z" fill="#3E4A52" opacity="0.10"/>
+            <path d="M1560,470 C1680,392 1800,420 1930,372" stroke="#3E4A52" stroke-width="3" fill="none" opacity="0.35" stroke-linecap="round"/>
+          </g>
+          <!-- 飞鸟 -->
+          <path d="M1980,214 q14,-12 28,0 q14,-12 28,0" stroke="#3E4A52" stroke-width="3.5" fill="none" stroke-linecap="round" opacity="0.8"/>
+          <path d="M1898,252 q12,-10 24,0 q12,-10 24,0" stroke="#3E4A52" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.6"/>
+          <!-- 云雾 -->
+          <ellipse class="p-mist" cx="1000" cy="300" rx="320" ry="42" fill="#FFFDF7" opacity="0.5"/>
+          <ellipse class="p-mist p-mist--2" cx="1600" cy="240" rx="260" ry="36" fill="#FFFDF7" opacity="0.4"/>
+          <!-- 卷首题字 + 印章 -->
+          <g>
+            <text x="2290" y="150" font-size="76" fill="#2B2B2B" text-anchor="middle" font-family="LXGW WenKai, KaiTi, serif">弦</text>
+            <text x="2290" y="236" font-size="76" fill="#2B2B2B" text-anchor="middle" font-family="LXGW WenKai, KaiTi, serif">歌</text>
+            <text x="2290" y="322" font-size="76" fill="#2B2B2B" text-anchor="middle" font-family="LXGW WenKai, KaiTi, serif">出</text>
+            <text x="2290" y="408" font-size="76" fill="#2B2B2B" text-anchor="middle" font-family="LXGW WenKai, KaiTi, serif">围</text>
+            <text x="2290" y="494" font-size="76" fill="#2B2B2B" text-anchor="middle" font-family="LXGW WenKai, KaiTi, serif">屋</text>
+            <rect x="2252" y="560" width="60" height="104" rx="6" fill="#C3272B"/>
+            <text x="2282" y="600" font-size="30" fill="#F7F2E7" text-anchor="middle" font-family="LXGW WenKai, KaiTi, serif">弦</text>
+            <text x="2282" y="642" font-size="30" fill="#F7F2E7" text-anchor="middle" font-family="LXGW WenKai, KaiTi, serif">歌</text>
+            <rect x="2350" y="118" width="44" height="88" rx="4" fill="#A0714F" opacity="0.9"/>
+            <text x="2372" y="152" font-size="20" fill="#F7F2E7" text-anchor="middle" font-family="LXGW WenKai, KaiTi, serif">客</text>
+            <text x="2372" y="180" font-size="20" fill="#F7F2E7" text-anchor="middle" font-family="LXGW WenKai, KaiTi, serif">韵</text>
+          </g>
+          <!-- 围屋群 -->
+          <g id="pWulou">
+            <ellipse cx="1400" cy="648" rx="340" ry="26" fill="#7C93A0" opacity="0.5"/>
+            <path d="M1080,600 A360,290 0 0 1 1760,600 L1712,600 A312,240 0 0 0 1128,600 Z" fill="#2B3138"/>
+            <path d="M1160,600 A280,220 0 0 1 1680,600 L1646,600 A246,186 0 0 0 1194,600 Z" fill="#2B3138"/>
+            <rect x="1348" y="474" width="104" height="126" fill="#2B3138"/>
+            <path d="M1322,476 L1400,430 L1478,476 Z" fill="#2B3138"/>
+            <rect x="1256" y="514" width="82" height="86" fill="#2B3138"/>
+            <path d="M1244,516 L1297,486 L1350,516 Z" fill="#2B3138"/>
+            <rect x="1562" y="514" width="82" height="86" fill="#2B3138"/>
+            <path d="M1550,516 L1603,486 L1656,516 Z" fill="#2B3138"/>
+          </g>
+          <!-- 小聚落 -->
+          <rect x="520" y="500" width="140" height="112" fill="#2B3138" opacity="0.85"/>
+          <path d="M506,502 L590,458 L674,502 Z" fill="#2B3138" opacity="0.85"/>
+          <circle cx="810" cy="566" r="88" fill="#2B3138" opacity="0.85"/>
+          <circle cx="810" cy="566" r="62" fill="#F7F2E7"/>
+          <rect x="796" y="528" width="28" height="44" fill="#2B3138"/>
+          <!-- 水线与孤舟 -->
+          <path d="M420,656 C640,648 860,662 1080,652" stroke="#7C93A0" stroke-width="3.5" fill="none" opacity="0.5" stroke-linecap="round"/>
+          <path d="M1180,662 C1300,656 1420,664 1560,658" stroke="#7C93A0" stroke-width="2.5" fill="none" opacity="0.35" stroke-linecap="round"/>
+          <path d="M300,642 Q356,658 414,644 L398,620 L316,620 Z" fill="#2B3138"/>
+          <path d="M362,616 C378,596 382,570 374,548 C362,566 358,592 356,616 Z" fill="#2B3138" opacity="0.9"/>
+          <!-- 地平淡笔 -->
+          <path d="M80,700 C600,690 1200,706 2000,696" stroke="#C9B68C" stroke-width="2" fill="none" opacity="0.5"/>
+          <!-- 卷尾诗句 + 印章 -->
+          <g>
+            <text x="396" y="150" font-size="44" fill="#2B2B2B" text-anchor="middle" font-family="LXGW WenKai, KaiTi, serif">一</text>
+            <text x="396" y="208" font-size="44" fill="#2B2B2B" text-anchor="middle" font-family="LXGW WenKai, KaiTi, serif">座</text>
+            <text x="396" y="266" font-size="44" fill="#2B2B2B" text-anchor="middle" font-family="LXGW WenKai, KaiTi, serif">城</text>
+            <text x="396" y="324" font-size="44" fill="#2B2B2B" text-anchor="middle" font-family="LXGW WenKai, KaiTi, serif">的</text>
+            <text x="396" y="382" font-size="44" fill="#2B2B2B" text-anchor="middle" font-family="LXGW WenKai, KaiTi, serif">千</text>
+            <text x="396" y="440" font-size="44" fill="#2B2B2B" text-anchor="middle" font-family="LXGW WenKai, KaiTi, serif">年</text>
+            <text x="396" y="498" font-size="44" fill="#2B2B2B" text-anchor="middle" font-family="LXGW WenKai, KaiTi, serif">书</text>
+            <text x="396" y="556" font-size="44" fill="#2B2B2B" text-anchor="middle" font-family="LXGW WenKai, KaiTi, serif">声</text>
+            <text x="316" y="170" font-size="36" fill="#4A4A4A" text-anchor="middle" font-family="LXGW WenKai, KaiTi, serif">与</text>
+            <text x="316" y="218" font-size="36" fill="#4A4A4A" text-anchor="middle" font-family="LXGW WenKai, KaiTi, serif">一</text>
+            <text x="316" y="266" font-size="36" fill="#4A4A4A" text-anchor="middle" font-family="LXGW WenKai, KaiTi, serif">个</text>
+            <text x="316" y="314" font-size="36" fill="#4A4A4A" text-anchor="middle" font-family="LXGW WenKai, KaiTi, serif">学</text>
+            <text x="316" y="362" font-size="36" fill="#4A4A4A" text-anchor="middle" font-family="LXGW WenKai, KaiTi, serif">子</text>
+            <text x="316" y="410" font-size="36" fill="#4A4A4A" text-anchor="middle" font-family="LXGW WenKai, KaiTi, serif">的</text>
+            <text x="316" y="458" font-size="36" fill="#4A4A4A" text-anchor="middle" font-family="LXGW WenKai, KaiTi, serif">百</text>
+            <text x="316" y="506" font-size="36" fill="#4A4A4A" text-anchor="middle" font-family="LXGW WenKai, KaiTi, serif">年</text>
+            <text x="316" y="554" font-size="36" fill="#4A4A4A" text-anchor="middle" font-family="LXGW WenKai, KaiTi, serif">对</text>
+            <text x="316" y="602" font-size="36" fill="#4A4A4A" text-anchor="middle" font-family="LXGW WenKai, KaiTi, serif">话</text>
+            <rect x="222" y="560" width="56" height="104" rx="6" fill="#C3272B"/>
+            <text x="250" y="600" font-size="24" fill="#F7F2E7" text-anchor="middle" font-family="LXGW WenKai, KaiTi, serif">客</text>
+            <text x="250" y="640" font-size="24" fill="#F7F2E7" text-anchor="middle" font-family="LXGW WenKai, KaiTi, serif">韵</text>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ 壹 · 客从何来 ═══════════ -->
+  <section class="chapter" id="sec-1">
+    <div class="chapter__inner">
+      <p class="chapter__no">壹</p>
+      <p class="chapter-side" aria-hidden="true">四海为家</p>
+      <h2 class="chapter__title">客从何来</h2>
+      <p class="chapter__lead reveal">「处处为客，四海为家。」<br>
+        他们把中原的读书声，一路背进了南方的群山。</p>
+
+      <!-- 迁徙路线地图（示意，与轮播双向联动） -->
+      <div class="map-wrap reveal">
+        <div class="map-stage" id="mapStage">
+          <button class="map-stage__btn is-active" data-idx="0">西晋末 · 南渡</button>
+          <button class="map-stage__btn" data-idx="1">唐末 · 入赣闽</button>
+          <button class="map-stage__btn" data-idx="2">宋末 · 入梅州</button>
+          <button class="map-stage__btn" data-idx="3">明清 · 下南洋</button>
+        </div>
+        <div class="map-box" id="migrationMap"><p class="map-fallback">迁徙地图加载中……</p></div>
+        <p class="img-note">迁徙路线为示意，据客家迁徙史通行表述简绘；点击上方阶段或等轮播翻页，地图与故事同步。</p>
+      </div>
+
+      <div class="migrate-carousel reveal" id="migrateCarousel">
+        <div class="mc__track" id="mcTrack">
+          <div class="mc__slide">
+            <div class="mc__img" data-bg="assets/img/migrate-zhongyuan.jpg"></div>
+            <div class="mc__body">
+              <span class="migrate__era">西晋末</span>
+              <h3>永嘉之乱</h3>
+              <p>中原板荡，衣冠南渡。第一批移民离开黄河两岸，向江南进发。</p>
+            </div>
+          </div>
+          <div class="mc__slide">
+            <div class="mc__img" data-bg="assets/img/migrate-gannan.jpg"></div>
+            <div class="mc__body">
+              <span class="migrate__era">唐末</span>
+              <h3>烽火再起</h3>
+              <p>战乱绵延，移民翻越武夷山脉，进入赣南、闽西的丘陵深处。</p>
+            </div>
+          </div>
+          <div class="mc__slide">
+            <div class="mc__img" data-bg="assets/img/migrate-meijiang.jpg"></div>
+            <div class="mc__body">
+              <span class="migrate__era">宋末</span>
+              <h3>南迁入粤</h3>
+              <p>元兵南下，流民继续向粤东北群山汇聚，梅州渐成客家人聚居的核心。</p>
+            </div>
+          </div>
+          <div class="mc__slide">
+            <div class="mc__img" data-bg="assets/img/migrate-songkou.jpg"></div>
+            <div class="mc__body">
+              <span class="migrate__era">明清</span>
+              <h3>播迁四海</h3>
+              <p>人口滋长，客家人再度出发——填川、迁海、下南洋，把围屋的路延伸到世界。</p>
+            </div>
+          </div>
+        </div>
+        <div class="mc__dots" id="mcDots"></div>
+      </div>
+      <p class="img-note reveal">注：「播迁四海」一段配图为梅州老街骑楼（下南洋场景示意）。</p>
+
+      <p class="chapter__quote reveal">五次跋涉，山把他们围起来，<br>他们把家安进山里——称自己为「客」。</p>
+    </div>
+  </section>
+
+  <!-- ═══════════ 贰 · 围屋岁月 ═══════════ -->
+  <section class="chapter chapter--tint" id="sec-2">
+    <div class="chapter__inner">
+      <p class="chapter__no">贰</p>
+      <p class="chapter-side" aria-hidden="true">聚族于斯</p>
+      <h2 class="chapter__title">围屋岁月</h2>
+      <p class="chapter__lead reveal">泥土砌成的家书，一封写了千年。<br>前塘后屋，天圆地方，一围之内就是一族。</p>
+
+      <!-- 实景横幅 -->
+      <figure class="banner reveal">
+        <img src="assets/img/weilongwu.jpg" alt="梅州客家民居群航拍" loading="lazy" decoding="async">
+        <figcaption>梅州客家民居群落 · Wikimedia Commons（CC BY-SA 3.0 / Shi Annan）</figcaption>
+      </figure>
+
+      <!-- 围龙屋平面图解 -->
+      <figure class="plan">
+        <div class="plan-steps">
+          <p class="plan-step">「取土挖塘」— 半月池塘聚水为鉴</p>
+          <div class="plan-dots" aria-hidden="true">
+            <span class="plan-dot"></span><span class="plan-dot"></span><span class="plan-dot"></span><span class="plan-dot"></span><span class="plan-dot"></span>
+          </div>
+          <button class="plan-replay" type="button">↻ 重播</button>
+        </div>
+        <div class="plan-body">
+          <svg viewBox="0 0 520 300" aria-label="围龙屋平面示意，各部件可点击查看说明">
+            <g class="plan__hot" data-part="pond" tabindex="0" role="button" aria-label="半月池塘：聚水为鉴，也聚财气">
+              <path class="plan__pond" d="M60,240 A200,46 0 0 0 460,240 Z"/>
+              <rect class="plan__hit" x="40" y="214" width="440" height="48"/>
+            </g>
+            <g class="plan__hot" data-part="ping" tabindex="0" role="button" aria-label="禾坪：晒谷议事的地方">
+              <rect class="plan__ping" x="120" y="180" width="280" height="46" rx="4"/>
+              <rect class="plan__hit" x="112" y="168" width="296" height="66"/>
+            </g>
+            <g class="plan__hot" data-part="hall" tabindex="0" role="button" aria-label="堂屋：上堂祭祖、中堂议事、下堂迎客">
+              <rect class="plan__hall" x="190" y="120" width="140" height="52" rx="3"/>
+              <rect class="plan__hall" x="205" y="82" width="110" height="30" rx="3"/>
+              <rect class="plan__hit" x="182" y="70" width="156" height="108"/>
+            </g>
+            <g class="plan__hot" data-part="huatai" tabindex="0" role="button" aria-label="化胎：隆起承龙气的龟背土台">
+              <path class="plan__huatai" d="M205,82 A55,44 0 0 1 315,82 Z"/>
+              <rect class="plan__hit" x="190" y="26" width="140" height="64"/>
+            </g>
+            <g class="plan__hot" data-part="long" tabindex="0" role="button" aria-label="围龙间：弧形房间环抱一族">
+              <path class="plan__long" d="M110,120 A150,118 0 0 1 410,120 L380,120 A120,92 0 0 0 140,120 Z"/>
+              <rect class="plan__hit" x="96" y="0" width="328" height="124"/>
+            </g>
+            <g class="plan__labels" aria-hidden="true">
+              <text x="60" y="286">半月池塘</text>
+              <text x="228" y="211">禾坪</text>
+              <text x="235" y="152">堂屋</text>
+              <text x="228" y="72">化胎</text>
+              <text x="404" y="52">围龙间</text>
+            </g>
+          </svg>
+          <aside class="plan-info" aria-live="polite">
+            <p class="plan-info__text">把光标或焦点放到任一部件上——这座围屋会告诉你它每个部位的名字与用处。</p>
+          </aside>
+        </div>
+        <figcaption>围龙屋平面示意：前方半月池塘，后设弧形围龙，中轴堂屋贯穿「天圆地方」。</figcaption>
+      </figure>
+
+      <!-- 数据卡片 -->
+      <div class="stats">
+        <div class="stat reveal">
+          <span class="stat__num" aria-label="4367 座客家围龙屋">4,367</span>
+          <span class="stat__unit">座</span>
+          <p>客家围龙屋</p>
+        </div>
+        <div class="stat reveal">
+          <span class="stat__num" aria-label="422 处名人故居">422</span>
+          <span class="stat__unit">处</span>
+          <p>名人故居（旧居）</p>
+        </div>
+        <div class="stat reveal">
+          <span class="stat__num" aria-label="78 个国家级传统村落">78</span>
+          <span class="stat__unit">个</span>
+          <p>国家级传统村落</p>
+        </div>
+        <div class="stat reveal">
+          <span class="stat__num" aria-label="499 处各级文物保护单位">499</span>
+          <span class="stat__unit">处</span>
+          <p>各级文物保护单位</p>
+        </div>
+      </div>
+
+      <!-- 代表围屋 -->
+      <div class="cards">
+        <article class="card reveal">
+          <div class="card__thumb card__thumb--img" data-bg="assets/img/huacao-lou.jpg"></div>
+          <h3>花萼楼</h3>
+          <p class="card__meta">大埔 · 圆形土楼 · 四百余年</p>
+          <p>三环相围，夯土为墙。楼内的天井只落自己的雨，四百年来声息相通。</p>
+        </article>
+        <article class="card reveal">
+          <div class="card__thumb card__thumb--img" data-bg="assets/img/taian-lou.jpg"></div>
+          <h3>泰安楼</h3>
+          <p class="card__meta">大埔 · 方形石楼</p>
+          <p>以石筑墙，方正如印。名字里那一个「安」字，是迁徙民族最朴素的心愿。</p>
+        </article>
+        <article class="card reveal">
+          <div class="card__thumb card__thumb--img" data-bg="assets/img/qiaoxiang-cun.jpg"></div>
+          <h3>南华又庐</h3>
+          <p class="card__meta">梅县侨乡村 · 「十厅九井」</p>
+          <p>下南洋的侨商寄回银钱，建起这座九厅十八井的围屋，「又庐」二字，是故土难离。</p>
+        </article>
+      </div>
+      <p class="img-note reveal">注：圆楼、村落两张配图为同类形制示意，泰安楼为实景拍摄。</p>
+    </div>
+  </section>
+
+  <!-- ═══════════ 叁 · 崇文重教 ═══════════ -->
+  <section class="chapter" id="sec-3">
+    <div class="chapter__inner">
+      <p class="chapter__no">叁</p>
+      <p class="chapter-side" aria-hidden="true">耕读传家</p>
+      <h2 class="chapter__title">崇文重教</h2>
+      <p class="chapter__lead reveal">围屋的上堂，白日祭祖，夜里读书。<br>一族的书声，就是一个家族的运气。</p>
+
+      <blockquote class="motto reveal">
+        <p><span class="line">「地瘦栽松柏，</span><br><span class="line">家贫子读书。」</span></p>
+        <cite>—— 客家祖训</cite>
+      </blockquote>
+
+      <div class="prose reveal">
+        <p>在梅州的山间，最气派的建筑常常不是祠堂，而是学堂。客家人把迁徙路上唯一的行李——读书的传统——供进了围屋：上堂是祖厅，也是蒙馆；楹联劝学，比门神更常换新。</p>
+        <p>「一腹三翰院」的故事在大埔流传了三百年：一位客家母亲生下的三个儿子先后入翰林院。科举时代，梅州科甲连绵；近代以来，「文化之乡」「华侨之乡」「足球之乡」三块牌子，依然挂在城市门口。</p>
+      </div>
+
+      <!-- 文教史迹 -->
+      <div class="heritage">
+        <figure class="h-card reveal">
+          <div class="h-card__img" data-bg="assets/img/dongshan-shuyuan.jpg"></div>
+          <figcaption>
+            <h3>东山书院 · 东山中学</h3>
+            <p>清乾隆年间建的书院，1913 年改为东山中学——叶剑英元帅的少年书桌，就摆在这里。</p>
+          </figcaption>
+        </figure>
+        <figure class="h-card reveal">
+          <div class="h-card__img" data-bg="assets/img/renjing-lu.jpg"></div>
+          <figcaption>
+            <h3>人境庐 · 黄遵宪</h3>
+            <p>「我手写我口」的晚清诗人与外交家，晚年归梅州筑人境庐——客家人读书，读进了家国。</p>
+          </figcaption>
+        </figure>
+      </div>
+
+      <div class="badges reveal">
+        <span class="badge">文化之乡</span>
+        <span class="badge">华侨之乡</span>
+        <span class="badge">足球之乡</span>
+        <span class="badge badge--hl">东亚文化之都 · 2023</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ 肆 · 非遗之声 ═══════════ -->
+  <section class="chapter chapter--tint" id="sec-4">
+    <div class="chapter__inner">
+      <p class="chapter__no">肆</p>
+      <p class="chapter-side" aria-hidden="true">随口成歌</p>
+      <h2 class="chapter__title">非遗之声</h2>
+      <p class="chapter__lead reveal">梅州拥有客家山歌、广东汉剧、埔寨火龙等 <strong>7</strong> 项国家级非遗，<br>各级代表性项目 <strong>448</strong> 项、传承人 <strong>538</strong> 人。这一章，请你把耳朵也打开。</p>
+
+      <div class="cards">
+        <article class="card card--sound reveal">
+          <div class="card__soundicon">♪</div>
+          <h3>客家山歌 · 月光光</h3>
+          <p class="card__meta">国家级非遗 · 梅州</p>
+          <p>中原古韵的南方变奏，客家人「心灵家园」的文化象征。2026 年客家（梅州）非遗周的舞台上，经典童谣《月光光》再度回荡梅江夜空——它也是几乎每个客家人学会的第一支歌。</p>
+          <button class="sound-btn" data-sound="《月光光》 · 演唱：钟雯（客家话版）" data-audio="assets/audio/yueguangguang.mp3" data-title="月光光">▶ 播放《月光光》</button>
+        </article>
+        <article class="card card--sound reveal">
+          <div class="card__soundicon">♫</div>
+          <h3>广东汉剧</h3>
+          <p class="card__meta">国家级非遗 · 「南国牡丹」</p>
+          <p>旧称「外江戏」，源自大埔，被誉为「南国牡丹」。中州官话唱念，西皮二黄开腔，2008 年列入国家级非遗名录。</p>
+          <span class="sound-tag" aria-disabled="true">♪ 音频未收录 · 等一段汉剧唱腔</span>
+        </article>
+        <article class="card card--sound reveal">
+          <div class="card__soundicon">✦</div>
+          <h3>埔寨火龙</h3>
+          <p class="card__meta">国家级非遗 · 丰顺</p>
+          <p>竹篾扎龙、裱纸彩绘。元宵之夜，丰顺埔寨的火龙在漫天火星中翻腾起舞，火花四溅，赤膊的舞龙人把一整年的祈愿点着。</p>
+          <span class="sound-tag" aria-disabled="true">✦ 影像未收录 · 等一场火龙现场</span>
+        </article>
+      </div>
+      <!-- 月光光童谣 · 个人记忆 -->
+      <figure class="nursery reveal">
+        <blockquote>
+          <p>月光光，秀才郎；骑白马，过莲塘。</p>
+          <p>莲塘背，种韭菜；韭菜花，结亲家。</p>
+        </blockquote>
+        <figcaption class="nursery__caption">梅州童谣《月光光》 · 小时候大人教你哼过的，就是这一首</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ═══════════ 伍 · 客家烟火 ═══════════ -->
+  <section class="chapter" id="sec-5">
+    <div class="chapter__inner">
+      <p class="chapter__no">伍</p>
+      <p class="chapter-side" aria-hidden="true">人间烟火</p>
+      <h2 class="chapter__title">客家烟火</h2>
+      <p class="chapter__lead reveal">一桌一席，是迁徙的乡愁最具体的形状。<br>梅州八个县区，桌桌各有各的味道。</p>
+
+      <div class="food-grid">
+        <article class="food reveal">
+          <div class="food__img" data-bg="assets/img/food-yanmian.jpg"></div>
+          <h3>腌面</h3>
+          <p class="food__meta">梅江区 · 城区清晨</p>
+          <p>梅州人的清晨从一碗猪油蒜香开始，拌到根根发亮——这叫「食朝」。</p>
+        </article>
+        <article class="food reveal">
+          <div class="food__img" data-bg="assets/img/food-sanjidi.jpg"></div>
+          <h3>三及第汤</h3>
+          <p class="food__meta">蕉岭县</p>
+          <p>猪肝、瘦肉、粉肠滚成一盅，讨个「状元及第」的彩头——相传源自蕉岭，一碗汤里全是读书人的讲究。</p>
+        </article>
+        <article class="food reveal">
+          <div class="food__img" data-bg="assets/img/food-saltchicken.jpg"></div>
+          <h3>盐焗鸡</h3>
+          <p class="food__meta">梅县区</p>
+          <p>粗盐埋住整鸡，焗出琥珀色的咸香——行囊里的干粮，变成了宴席上的招牌。</p>
+        </article>
+        <article class="food reveal">
+          <div class="food__img" data-bg="assets/img/food-meicai.jpg"></div>
+          <h3>梅菜扣肉</h3>
+          <p class="food__meta">梅县区</p>
+          <p>梅州菜干吸饱肉汁，肥肉蒸得透亮。下饭的一口，是客家人过日子的一口。</p>
+        </article>
+        <article class="food reveal">
+          <div class="food__img" data-bg="assets/img/food-niandoufu.jpg"></div>
+          <h3>酿豆腐</h3>
+          <p class="food__meta">兴宁市 · 五华县</p>
+          <p>相传客家人南迁到兴宁、五华一带，念着北方的饺子，就把肉馅酿进了豆腐里。</p>
+        </article>
+        <article class="food reveal">
+          <div class="food__img" data-bg="assets/img/food-niangjiu.jpg"></div>
+          <h3>客家娘酒</h3>
+          <p class="food__meta">梅县区</p>
+          <p>糯米酿造，月子里的母亲必饮；一锅娘酒煮鸡，是最暖的月子菜。</p>
+        </article>
+        <article class="food reveal">
+          <div class="food__img" data-bg="assets/img/food-suanpanzi.jpg"></div>
+          <h3>算盘子</h3>
+          <p class="food__meta">大埔县 · 百侯</p>
+          <p>芋泥捏成算盘珠，和肉末香菇同炒——把它炒进菜里，也把精打细算炒进日子里。</p>
+        </article>
+        <article class="food reveal">
+          <div class="food__img" data-bg="assets/img/food-laoshuban.jpg"></div>
+          <h3>老鼠粄</h3>
+          <p class="food__meta">大埔县</p>
+          <p>米浆搓成两头尖的小粄，形似鼠仔而得名——滚汤、捞炒皆滑溜弹牙，大埔人的心头好。</p>
+        </article>
+        <article class="food reveal">
+          <div class="food__img" data-bg="assets/img/food-popiah.jpg"></div>
+          <h3>大埔薄饼</h3>
+          <p class="food__meta">大埔县 · 百侯</p>
+          <p>饼皮薄得透光，卷入肉丝、豆干与海味——百侯人家待客的功夫菜。</p>
+        </article>
+        <article class="food reveal">
+          <div class="food__img" data-bg="assets/img/food-kuenban.jpg"></div>
+          <h3>丰顺捆粄</h3>
+          <p class="food__meta">丰顺县</p>
+          <p>米浆蒸成薄皮，捆住豆干、韭菜与瘦肉——丰顺人的早餐，客家人的「春卷」。</p>
+        </article>
+        <article class="food reveal">
+          <div class="food__img" data-bg="assets/img/food-huangban.jpg"></div>
+          <h3>平远黄粄</h3>
+          <p class="food__meta">平远县</p>
+          <p>禾米染成金黄，捶打再蒸——蘸糖吃甜、切片炒着吃香，平远人过年的颜色。</p>
+        </article>
+        <article class="food reveal">
+          <div class="food__img" data-bg="assets/img/food-changleshao.jpg"></div>
+          <h3>长乐烧</h3>
+          <p class="food__meta">五华县</p>
+          <p>相传始于明朝的烧酒坊，粤东名酒——客家人席上的一口烈性，敬远客，也敬岁月。</p>
+        </article>
+        <article class="food reveal">
+          <div class="food__img" data-bg="assets/img/food-wuhuayusheng.jpg"></div>
+          <h3>五华鱼生</h3>
+          <p class="food__meta">五华县</p>
+          <p>鲜鲩现切，薄可透光，拌上姜丝花生入口即化——五华人待客的至鲜一课。</p>
+        </article>
+        <article class="food reveal">
+          <div class="food__img" data-bg="assets/img/food-xianrencan.jpg"></div>
+          <h3>仙人粄</h3>
+          <p class="food__meta">客家城乡</p>
+          <p>入伏的消暑甜品，仙草熬成，乌黑透亮带着草香——客家人自己的「天然凉茶」。</p>
+        </article>
+        <article class="food reveal">
+          <div class="food__img" data-bg="assets/img/food-sunban.jpg"></div>
+          <h3>笋粄</h3>
+          <p class="food__meta">客家城乡</p>
+          <p>春天的笋切丁爆香，裹进软糯的粄皮——梅州人管米食都叫「粄」，一个字里有整座山的物产。</p>
+        </article>
+      </div>
+      <p class="img-note reveal">注：薄饼、捆粄、黄粄、长乐烧、鱼生、三及第、娘酒、笋粄等配图为同类菜式或器物示意，其余菜品为实拍。</p>
+
+      <!-- 客家话小词典 -->
+      <div class="dict reveal">
+        <h3 class="dict__title">客家话小词典 <span>· 点击翻牌</span></h3>
+        <div class="dict__grid">
+          <button class="flip" data-mean="「𠊎系客家人」——客家话的「我」"><span class="flip__char">𠊎</span><span class="flip__pinyin">ngai</span></button>
+          <button class="flip" data-mean="吃早饭"><span class="flip__char">食朝</span><span class="flip__pinyin">siid zau</span></button>
+          <button class="flip" data-mean="下雨"><span class="flip__char">落水</span><span class="flip__pinyin">lok sui</span></button>
+          <button class="flip" data-mean="家"><span class="flip__char">屋下</span><span class="flip__pinyin">vuk ha</span></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ 陆 · 岁时节庆 ═══════════ -->
+  <section class="chapter chapter--tint" id="sec-6">
+    <div class="chapter__inner">
+      <p class="chapter__no">陆</p>
+      <p class="chapter-side" aria-hidden="true">岁时有节</p>
+      <h2 class="chapter__title">岁时节庆</h2>
+      <p class="chapter__lead reveal">同样是过年过节，梅州各县各乡各有各的过法——<br>丰顺的火龙、兴宁的花灯、乡下的月半。你家的节，是怎么过的？</p>
+
+      <div class="cards cards--2x2">
+        <article class="card reveal">
+          <div class="mini-slider" data-images='["assets/img/fest-dragon-1.jpg","assets/img/fest-dragon-2.jpg","assets/img/fest-dragon-3.jpg"]'></div>
+          <h3>元宵 · 烧火龙</h3>
+          <p class="card__meta">丰顺 · 埔寨镇</p>
+          <p>火龙出巡，全村倾巢。人在火星里追着龙跑，龙在星光里翻腾——一夜的烟火，烧掉一年的晦气，祈来一岁的风调雨顺。</p>
+        </article>
+        <article class="card reveal">
+          <div class="mini-slider" data-images='["assets/img/fest-lantern-1.jpg","assets/img/fest-lantern-2.jpg","assets/img/fest-lantern-3.jpg"]'></div>
+          <h3>上灯 · 赏灯</h3>
+          <p class="card__meta">兴宁等地 · 省级非遗</p>
+          <p>上年添了新丁的人家，正月里到祖祠「上灯」——一盏花灯挂上祖宗牌位前，一条新血脉写进族谱。兴宁的上灯最热闹，全村吃灯酒。</p>
+          <button class="lantern-btn" data-lantern type="button">✦ 点亮花灯</button>
+        </article>
+        <article class="card reveal">
+          <div class="mini-slider" data-images='["assets/img/fest-yueban-1.jpg","assets/img/fest-yueban-2.jpg","assets/img/fest-yueban-3.jpg"]'></div>
+          <h3>过月半</h3>
+          <p class="card__meta">农历七月 · 各乡日子不一</p>
+          <p>客家人把七月节叫「过月半」，接祖先回家吃饭。各县各乡的日子、吃食不尽相同——问一问家里老人，你家的月半是哪一天？</p>
+        </article>
+        <article class="card reveal">
+          <div class="mini-slider" data-images='["assets/img/fest-tianchuan-1.jpg","assets/img/fest-tianchuan-2.jpg","assets/img/fest-tianchuan-3.jpg"]'></div>
+          <h3>天穿日</h3>
+          <p class="card__meta">正月二十</p>
+          <p>煎好甜粄，挂在门梁屋顶「补天穿」——纪念女娲补天的日子，也提醒农闲将尽。一块甜粄，是客家人的浪漫。</p>
+          <div class="mend-sky" data-mend>
+            <div class="mend-sky__gap">天 破 了</div>
+            <div class="mend-sky__pad" data-caiban title="拖我上去补天">粄</div>
+          </div>
+        </article>
+      </div>
+      <p class="img-note reveal">注：节庆配图均为同类民俗场景示意（香火龙、花灯、祠堂祭祖、年糕）——埔寨火龙与兴宁上灯暂无开放版权专拍，等你回梅州实拍替换。</p>
+
+      <p class="chapter__quote reveal">山有多深，日子就有多少种过法。</p>
+    </div>
+  </section>
+
+  <!-- ═══════════ 柒 · 弦歌不辍 ═══════════ -->
+  <section class="chapter chapter--final" id="sec-7">
+    <canvas class="final-fx" aria-hidden="true"></canvas>
+    <div class="chapter__inner">
+      <p class="chapter__no">柒</p>
+      <p class="chapter-side" aria-hidden="true">书声不熄</p>
+      <h2 class="chapter__title">弦歌不辍</h2>
+      <p class="chapter__lead reveal">客家人相信：书声不熄，家族不散。<br>一百年前，另一群人在广州点燃了同一炉薪火。</p>
+
+      <p class="chapter__quote reveal">客家先民五次迁徙，把家安进群山；<br>这所大学七度迁徙，把书声背过烽火。</p>
+
+      <!-- 双时间轴 -->
+      <div class="dual reveal">
+        <div class="dual__col">
+          <h3>梅州 · 围屋里的学堂</h3>
+          <ul class="timeline">
+            <li><span class="timeline__time">明清</span><p>围屋上堂设蒙馆，祠堂楹联劝学，宗族供子弟读书</p></li>
+            <li><span class="timeline__time">近代</span><p>新学入梅，学堂书院遍布山间城乡</p></li>
+            <li><span class="timeline__time">2023</span><p>获评「东亚文化之都」，建成国家级客家文化（梅州）生态保护区</p></li>
+          </ul>
+        </div>
+        <div class="dual__bridge">同一个书桌</div>
+        <div class="dual__col">
+          <h3>广州大学 · 百年弦歌</h3>
+          <ul class="timeline">
+            <!-- 校史节点依据：广州大学官网《学校简介》、档案馆《广州大学简史》、学校章程 -->
+            <li><span class="timeline__time">1927</span><p>陈炳权等创办私立广州大学，「博学笃行」由此立训</p></li>
+            <li><span class="timeline__time">1938-45</span><p>抗战烽火中七度迁徙办学，弦歌不辍</p></li>
+            <li><span class="timeline__time">2000</span><p>五校合并，组建新的广州大学</p></li>
+            <li><span class="timeline__time">2027</span><p>建校一百周年，百年薪火，赓续华章</p></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="closing reveal">
+        <p class="closing__text"><span class="line">我从围屋的山门，走进大学城的校门。</span><br>
+        <span class="line">两个百年，在同一个书桌上相遇——</span><br>
+        <span class="line">客家人的书声，原来从未换过调。</span></p>
+        <p class="closing__sign">—— 一个在广州大学读书的客家学子</p>
+      </div>
+
+      <!-- 留言板彩蛋 -->
+      <div class="board reveal">
+        <h3>留下来一句话吧 · 说说你的家乡</h3>
+        <form id="boardForm">
+          <input type="text" id="boardInput" maxlength="30" placeholder="写一句话（30字以内）" required>
+          <button type="submit">留下</button>
+        </form>
+        <p class="board__note">留言仅保存在本机浏览器（localStorage，本页无服务器、不会公开）——想把它带走，去下面的「名片工坊」做成名片。</p>
+        <ul class="board__list" id="boardList"></ul>
+        <div class="card-maker">
+          <p class="card-maker__title">✦ 名片工坊 — 把一句话做成可带走的客家名片</p>
+          <div class="card-maker__row">
+            <input type="text" id="cardText" maxlength="24" placeholder="写一句想带走的话（留空则用你最新的留言）">
+            <button id="makeCard" type="button">生成名片</button>
+          </div>
+          <img id="cardPreview" class="card-preview" alt="文化名片预览" hidden>
+          <a id="cardDownload" class="card-dl" download="弦歌出围屋-文化名片.png" hidden>⬇ 保存这张名片</a>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <p>弦歌出围屋 —— 从围屋到大学堂</p>
+      <p>广州大学网页设计大赛 · 方向三 文化传承网页</p>
+      <p class="footer__note">本页尊重系统「减少动效」设置 · 图片来源：Wikimedia Commons（CC 授权，详见 assets/img/CREDITS.md）· 史实参考：广州大学官网/档案馆、中国非物质文化遗产网、梅州文旅公众号</p>
+      <details class="sources">
+        <summary>数据与图片来源</summary>
+        <ol>
+          <li>客家围龙屋 4,367 座、名人故居 422 处、国家级传统村落 78 个、各级文保单位 499 处、各级非遗 448 项、传承人 538 人 —— 中国非物质文化遗产网《广东梅州创建国家级文化生态保护区纪实》，2026-10-31 查阅</li>
+          <li>国家级非遗 7 项（客家山歌、广东汉剧、埔寨火龙等）—— 中国非物质文化遗产网、南方日报《非遗传承焕新姿 客家文化绽芳华》，2026-10-31 查阅</li>
+          <li>「东亚文化之都 · 2023」—— 文化和旅游部评选名单，2026-10-31 查阅</li>
+          <li>校史节点 1927 / 1938-45 / 2000 —— 广州大学档案馆《广州大学简史》、学校官网《学校简介》、学校章程，2026-10-31 查阅</li>
+          <li>图片素材 40 张 —— Wikimedia Commons 开放授权（CC0 / CC BY / CC BY-SA / 公有领域），逐张记录于 assets/img/CREDITS.md</li>
+        </ol>
+      </details>
+    </footer>
+  </section>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="assets/js/main.js?v=7"></script>
+  <script src="assets/js/interactions.js?v=9"></script>
+  <script src="assets/js/ambient.js?v=1"></script>
+  <script src="assets/js/loader.js?v=1"></script>
+  <script defer src="assets/lib/echarts/echarts.min.js"></script>
+  <script defer src="assets/data/china-geo.js"></script>
+  <script defer src="assets/js/migration-map.js?v=2"></script>
+</body>
+</html>
