@@ -9,7 +9,7 @@
   <meta property="og:description" content="世界客都·广东梅州 | 一座城的千年书声，与一个学子的百年对话">
   <meta property="og:image" content="assets/img/hero-weilong.jpg">
   <meta property="og:type" content="website">
-  <link rel="preload" as="image" href="assets/img/hero-weilong-1280.avif">
+  <link rel="preload" as="image" type="image/avif" href="assets/img/hero-weilong-1280.avif">
   <link rel="stylesheet" href="assets/css/fonts-regular.css">
   <link rel="stylesheet" href="assets/css/fonts-bold.css">
   <link rel="stylesheet" href="assets/css/style.css?v=7">
@@ -43,10 +43,14 @@
 
   <!-- ═══════════ 序章 · 客都印象 ═══════════ -->
   <section class="hero" id="sec-0">
-    <img class="hero__photo" src="assets/img/hero-weilong-1280.avif"
-         srcset="assets/img/hero-weilong-640.avif 640w, assets/img/hero-weilong-1280.avif 1280w, assets/img/hero-weilong-1920.avif 1920w"
-         sizes="100vw" width="1920" height="1280" fetchpriority="high"
-         alt="清晨薄雾中的客家土楼群">
+    <picture class="hero__media">
+      <source type="image/avif"
+              srcset="assets/img/hero-weilong-640.avif 640w, assets/img/hero-weilong-1280.avif 1280w, assets/img/hero-weilong-1920.avif 1920w"
+              sizes="100vw">
+      <img class="hero__photo" src="assets/img/hero-weilong.jpg" width="1600" height="1067"
+           fetchpriority="high" decoding="async"
+           alt="清晨薄雾中的客家土楼群">
+    </picture>
     <div class="hero__shade"></div>
     <canvas class="hero__fx" aria-hidden="true"></canvas>
     <span class="hero__credit">客家土楼晨曦 · 示意图 · Wikimedia Commons（CC BY-SA 3.0 / Zhangzhugang）</span>
@@ -220,7 +224,7 @@
 
       <!-- 实景横幅 -->
       <figure class="banner reveal">
-        <img src="assets/img/weilongwu.jpg" alt="梅州客家民居群航拍" loading="lazy" decoding="async">
+        <img src="assets/img/weilongwu.jpg" alt="梅州客家民居群航拍" width="1100" height="839" loading="lazy" decoding="async">
         <figcaption>梅州客家民居群落 · Wikimedia Commons（CC BY-SA 3.0 / Shi Annan）</figcaption>
       </figure>
 
