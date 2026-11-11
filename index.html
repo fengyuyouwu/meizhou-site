@@ -604,6 +604,16 @@ body {
 }
 .dict__note { margin: -10px 0 22px; font-size: .82rem; color: var(--ink-soft); text-align: center; letter-spacing: .02em; }
 
+/* ---------- 肆章 · 非遗全名单 ---------- */
+.ich-list { margin-top: 30px; background: var(--card); border: 1px solid rgba(160,113,79,.25); border-radius: 10px; padding: 0 22px; }
+.ich-list summary { cursor: pointer; padding: 16px 0; font-family: var(--font-kai); font-size: 1.05rem; letter-spacing: .1em; color: var(--earth-deep); }
+.ich-list summary span { font-size: .82rem; color: var(--ink-soft); font-family: var(--font-serif); }
+.ich-list table { width: 100%; border-collapse: collapse; margin-bottom: 8px; }
+.ich-list th { font-size: .82rem; color: var(--earth-deep); text-align: left; padding: 8px 10px; border-bottom: 2px solid var(--earth-light); font-weight: 700; }
+.ich-list td { font-size: .82rem; color: var(--ink-soft); padding: 9px 10px; border-bottom: 1px solid rgba(160,113,79,.18); line-height: 1.6; }
+.ich-list tr:last-child td { border-bottom: none; }
+.ich-note { font-size: .78rem; color: var(--ink-soft); margin: 6px 0 14px; line-height: 1.7; }
+
 .closing { text-align: center; padding: 30px 0 10px; }
 .closing__text { font-family: var(--font-kai); font-size: clamp(1.2rem, 3vw, 1.7rem); line-height: 2.3; letter-spacing: .14em; color: #F2EAD8; }
 .closing__sign { margin-top: 20px; font-size: .95rem; color: #8E9BA5; letter-spacing: .2em; }
@@ -1024,6 +1034,8 @@ body {
         </article>
       </div>
       <p class="img-note reveal">注：圆楼、村落两张配图为同类形制示意，泰安楼为实景拍摄。</p>
+
+      <!-- 数据出处：中国非物质文化遗产网逐项核实（2026-11-11），详见页脚「数据与图片来源」 -->
     </div>
   </section>
 
@@ -1051,7 +1063,7 @@ body {
           <div class="h-card__img" data-bg="assets/img/dongshan-shuyuan.jpg"></div>
           <figcaption>
             <h3>东山书院 · 东山中学</h3>
-            <p>清乾隆年间建的书院，1913 年改为东山中学——叶剑英元帅的少年书桌，就摆在这里。</p>
+            <p>清乾隆年间建的书院。1903 年，返乡的黄遵宪筹资将其改为东山初级师范学堂，喊出「兴邦之策，莫善于兴学」——十年后东山中学在此创办，叶剑英元帅的少年书桌就摆在这里。</p>
           </figcaption>
         </figure>
         <figure class="h-card reveal">
@@ -1103,6 +1115,26 @@ body {
           <span class="sound-tag" aria-disabled="true">✦ 影像未收录 · 等一场火龙现场</span>
         </article>
       </div>
+
+      <!-- 7 项全名单（逐项核实，见页脚来源） -->
+      <details class="ich-list reveal">
+        <summary>梅州 7 项国家级非遗 · 全名单 <span>逐项核实 · 点开看</span></summary>
+        <table>
+          <thead>
+            <tr><th>项目</th><th>类别</th><th>批次</th><th>保护单位</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>梅州客家山歌</td><td>传统音乐</td><td>第一批 · 2006</td><td>梅州市文化馆</td></tr>
+            <tr><td>广东汉乐</td><td>传统音乐</td><td>第一批 · 2006</td><td>大埔县文化馆</td></tr>
+            <tr><td>龙舞（埔寨火龙）</td><td>传统舞蹈</td><td>第二批 · 2008 扩展</td><td>丰顺县文化馆</td></tr>
+            <tr><td>狮舞（席狮舞）</td><td>传统舞蹈</td><td>第二批 · 2008 扩展</td><td>梅江区文化馆</td></tr>
+            <tr><td>木偶戏（五华提线木偶）</td><td>传统戏剧</td><td>第二批 · 2008 扩展</td><td>五华县提线木偶传习所</td></tr>
+            <tr><td>广东汉剧</td><td>传统戏剧</td><td>第二批 · 2008</td><td>广东汉剧传承研究院</td></tr>
+            <tr><td>竹板歌</td><td>曲艺</td><td>第五批 · 2021</td><td>兴宁市文化馆</td></tr>
+          </tbody>
+        </table>
+        <p class="ich-note">逐项对照国务院公布文件（国发〔2006〕18号 / 〔2008〕19号 / 〔2021〕8号）与中国非物质文化遗产网数据库，2026-11-11 查阅。</p>
+      </details>
       <!-- 月光光童谣 · 个人记忆 -->
       <figure class="nursery reveal">
         <blockquote>
