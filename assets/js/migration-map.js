@@ -1,19 +1,44 @@
 /* ==========================================================
    壹章迁徙地图（渐进增强）
    - 四段迁徙路线流动动画，与迁徙轮播双向联动
-   - echarts / 地图数据缺失时回退为"加载中"提示，页面照常
+   - echarts（1MB）与地图数据（371KB）改为滚近才加载：不跟首屏图片抢带宽
+   - 加载失败 / 超时 → 换成静态路线说明 + 重试按钮，绝不停在"加载中"
    ========================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
   const box = document.getElementById('migrationMap');
   const stage = document.getElementById('mapStage');
   const carousel = document.getElementById('migrateCarousel');
-  if (!box || !window.echarts || !window.CHINA_GEO) return;
+  if (!box) return;
+
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const LOAD_TIMEOUT = 15000;
+
+  let chart = null;
+  let current = 0;
+  let state = 'idle'; // idle | loading | ready | failed
+
+  function fallback(note, retry) {
+    box.innerHTML =
+      '<p class="map-fallback">迁徙路线示意：中原（洛阳）→ 江南（建康）→ 赣南、闽西 → 梅州 → 出海下南洋。<br>' +
+      note +
+      (retry ? '<br><button type="button" class="map-retry">重新加载地图</button>' : '') +
+      '</p>';
+    state = 'failed';
+    if (retry) {
+      const btn = box.querySelector('.map-retry');
+      if (btn) btn.addEventListener('click', () => {
+        state = 'idle';
+        box.innerHTML = '<p class="map-fallback">迁徙地图加载中……</p>';
+        start();
+      });
+    }
+  }
+
   /* 减少动效：交互地图整体停用，给出静态路线说明（0 动画循环） */
   if (reduce) {
     if (stage) stage.style.display = 'none';
-    box.innerHTML = '<p class="map-fallback">迁徙路线示意：中原（洛阳）→ 江南（建康）→ 赣南、闽西 → 梅州 → 出海下南洋。<br>当前系统开启「减少动效」，交互地图已停用。</p>';
+    fallback('当前系统开启「减少动效」，交互地图已停用。', false);
     return;
   }
 
@@ -40,9 +65,6 @@ document.addEventListener('DOMContentLoaded', () => {
     { name: '汕头出海', coord: [116.68, 23.35], pos: 'right' },
     { name: '南洋 · 坤甸', coord: [109.4, 1.6], pos: 'left' }
   ];
-
-  let chart = null;
-  let current = 0;
 
   function buildSeries(hl) {
     const lines = ROUTES.map((r, i) => ({
@@ -119,22 +141,65 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function init() {
-    echarts.registerMap('china', window.CHINA_GEO);
-    chart = echarts.init(box, null, { renderer: 'canvas' });
+    window.echarts.registerMap('china', window.CHINA_GEO);
+    box.innerHTML = '';
+    chart = window.echarts.init(box, null, { renderer: 'canvas' });
+    state = 'ready';
     setHighlight(current);
     window.addEventListener('resize', () => chart && chart.resize());
   }
 
-  /* 惰性初始化：滚入视口才建图，不拖累首屏 */
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach((e) => {
-      if (e.isIntersecting) {
-        io.disconnect();
-        init();
-      }
+  function loadScript(src) {
+    return new Promise((resolve, reject) => {
+      const el = document.createElement('script');
+      el.src = src;
+      el.onload = resolve;
+      el.onerror = () => reject(new Error(src));
+      document.head.appendChild(el);
     });
-  }, { threshold: 0.12 });
-  io.observe(box);
+  }
+
+  function start() {
+    if (state === 'loading' || state === 'ready') return;
+    state = 'loading';
+    let done = false;
+    const timer = setTimeout(() => {
+      if (done) return;
+      done = true;
+      fallback('地图资源加载超时（可能是网速较慢），可继续向下阅读文字版迁徙故事。', true);
+    }, LOAD_TIMEOUT);
+
+    loadScript('assets/lib/echarts/echarts.min.js')
+      .then(() => loadScript('assets/data/china-geo.js'))
+      .then(() => {
+        if (done) return;
+        done = true;
+        clearTimeout(timer);
+        if (!window.echarts || !window.CHINA_GEO) throw new Error('globals missing');
+        init();
+      })
+      .catch(() => {
+        if (done) return;
+        done = true;
+        clearTimeout(timer);
+        fallback('交互地图未能加载，可继续向下阅读文字版迁徙故事。', true);
+      });
+  }
+
+  /* 惰性初始化：滚到附近才下载 1.4MB 的地图资源，不跟首屏图片抢带宽 */
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          io.disconnect();
+          start();
+        }
+      });
+    }, { rootMargin: '800px 0px' });
+    io.observe(box);
+  } else {
+    start();
+  }
 
   /* 与轮播双向联动：轮播换页 → 地图高亮；点击阶段按钮 → 轮播跳转 */
   if (carousel) {

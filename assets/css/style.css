@@ -205,7 +205,15 @@ body {
   border: 1px solid rgba(160, 113, 79, .25);
   background: linear-gradient(180deg, #FBF7EC, #F3EBD9);
 }
-.map-fallback { text-align: center; padding-top: 210px; color: var(--ink-soft); letter-spacing: .25em; font-size: .9rem; }
+.map-fallback { text-align: center; padding-top: 210px; color: var(--ink-soft); letter-spacing: .25em; font-size: .9rem; line-height: 2; }
+.map-retry {
+  margin-top: 18px; padding: 8px 20px; font: inherit; letter-spacing: .12em;
+  color: var(--earth-deep); background: transparent; cursor: pointer;
+  border: 1px solid rgba(160, 113, 79, .5); border-radius: 999px;
+  transition: background .2s ease, color .2s ease;
+}
+.map-retry:hover { background: rgba(160, 113, 79, .14); }
+.map-retry:focus-visible { outline: 2px solid var(--cinnabar); outline-offset: 3px; }
 .mc__track { display: flex; transition: transform .7s ease; }
 .mc__slide { min-width: 100%; }
 .mc__img {
