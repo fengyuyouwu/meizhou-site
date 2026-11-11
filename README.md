@@ -47,7 +47,7 @@
 ## 技术要点
 
 - **零构建、零依赖**：纯 HTML / CSS / JS；GSAP、ECharts、霞鹜文楷全部本地化，断网可跑。
-- **字体工程**：霞鹜文楷（SIL OFL 1.1）按页面字符集子集化，871 字 → 84 个 woff2 分块按需加载。
+- **字体工程**：霞鹜文楷（SIL OFL 1.1）按页面实际用字子集化，1231 字 + 标点符号合成两套字重各一个 woff2（regular 256KB / bold 253KB），首屏字体传输从 2.4MB 降到 510KB；字符集外的生僻字回退系统楷体。
 - **滚动驱动入场**：`animation-timeline: view()` + `@supports` 渐进增强——不支持的浏览器内容直接可见，不靠 JS 也能读。
 - **渐进增强三层**：GSAP / ECharts 动态加载失败 → 页面保持静态可读；系统开启「减少动效」→ 不加载动效库、不自动轮播；无 JS → 文本与图片仍在。
 - **图片**：36 张背景图 `IntersectionObserver` 懒加载 + 渐显；首屏 AVIF 三档（640 / 1280 / 1920）；固定高度占位防布局漂移。
@@ -97,10 +97,10 @@ meizhou-site/
 ├── 作品简介.md              # 参赛作品说明
 ├── docs/                   # README 截图
 └── assets/
-    ├── css/                # 样式（含字体 @font-face 分块表）
+    ├── css/                # 样式（含两个字体 @font-face）
     ├── js/                 # main / interactions / narrative / migration-map / ambient / loader
     ├── data/china-geo.js   # ECharts 地图数据
-    ├── fonts/lxgw/         # 霞鹜文楷 woff2 子集（84 块）
+    ├── fonts/lxgw/         # 霞鹜文楷 woff2 子集（regular + bold 各一个文件）
     ├── img/                # 40 张图片 + CREDITS.md
     ├── audio/              # 《月光光》节选
     └── lib/                # gsap / ScrollTrigger / echarts
