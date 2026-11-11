@@ -46,7 +46,7 @@
 
 ## 技术要点
 
-- **零构建、零依赖**：纯 HTML / CSS / JS；GSAP、ECharts、霞鹜文楷全部本地化，断网可跑。
+- **零构建、零依赖**：纯 HTML / CSS / JS；GSAP、ECharts、霞鹜文楷全部本地化，断网可跑。`assets/css/style.css` 由 `_tools/sync_css.py` 内联进 `index.html`，首屏没有阻塞渲染的外部样式请求。
 - **字体工程**：霞鹜文楷（SIL OFL 1.1）按页面实际用字子集化，1231 字 + 标点符号合成两套字重各一个 woff2（regular 256KB / bold 253KB），首屏字体传输从 2.4MB 降到 510KB；字符集外的生僻字回退系统楷体。
 - **滚动驱动入场**：`animation-timeline: view()` + `@supports` 渐进增强——不支持的浏览器内容直接可见，不靠 JS 也能读。
 - **渐进增强三层**：GSAP / ECharts 动态加载失败 → 页面保持静态可读；系统开启「减少动效」→ 不加载动效库、不自动轮播；无 JS → 文本与图片仍在。
