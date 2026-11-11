@@ -17,8 +17,17 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
-  /* ---------- 入场动效：已改为 CSS 滚动驱动动画（style.css 的 animation-timeline 块），
-     不支持的浏览器直接显示内容，无 JS 参与 ---------- */
+  /* ---------- 入场动效（IntersectionObserver） ---------- */
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.05 });
+  document.querySelectorAll('.reveal').forEach((el) => revealObserver.observe(el));
+
 
   /* ---------- 数据计数：终值常驻 DOM（曾用计数动画，为避免中间态错值已移除，
      数字来源见页脚「数据与图片来源」） ---------- */

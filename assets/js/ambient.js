@@ -81,28 +81,32 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     },
     ink: {
-      max: 36, density: 45000,
+      max: 42, density: 28000,
       spawn: (rand, init, W, H) => ({
         x: rand(0, W),
         y: init ? rand(0, H) : rand(-40, -6),
-        r: rand(0.5, 1.6),
-        vy: rand(0.05, 0.18),
+        r: rand(0.8, 2.1),
+        vy: rand(0.06, 0.22),
         phase: rand(0, Math.PI * 2),
-        alpha: rand(0.05, 0.15),
-        color: Math.random() < 0.3 ? '#A0714F' : '#3E4A52'
+        alpha: rand(0.16, 0.34),
+        color: Math.random() < 0.34 ? '#A0714F' : (Math.random() < 0.5 ? '#6B6257' : '#3E4A52')
       }),
       step: (p, dt, rand, W, H, now) => {
         p.y += p.vy * dt;
-        p.x += Math.sin(now * 0.0006 + p.phase) * 0.1 * dt;
+        p.x += Math.sin(now * 0.0006 + p.phase) * 0.14 * dt;
         if (p.y > H + 10) { p.y = -10; p.x = rand(0, W); }
         if (p.x < -10) p.x = W + 10; if (p.x > W + 10) p.x = -10;
       },
-      draw: (ctx, p) => {
-        ctx.globalAlpha = p.alpha;
+      draw: (ctx, p, now) => {
+        const breathe = 0.82 + 0.18 * Math.sin(now * 0.002 + p.phase);
+        ctx.globalAlpha = p.alpha * breathe;
+        ctx.shadowBlur = 2;
+        ctx.shadowColor = p.color;
         ctx.fillStyle = p.color;
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
         ctx.fill();
+        ctx.shadowBlur = 0;
         ctx.globalAlpha = 1;
       }
     }
@@ -127,6 +131,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function frame(now) {
       if (!running) return;
+      raf = requestAnimationFrame(frame);
+      if (now - last < 30) return;            /* 30fps 节流：慢速漂移足够，主线程减负 */
       const dt = Math.min((now - last) / 16.7, 3);
       last = now;
       ctx.clearRect(0, 0, W, H);

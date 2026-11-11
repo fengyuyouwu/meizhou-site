@@ -594,7 +594,6 @@ body {
 .chapter--final .dual__bridge { color: #E4736B; }
 .dual__bridge__text { display: block; }
 .timeline li { transition: opacity .3s ease, background-color .3s ease; outline-offset: 4px; }
-.dual.has-link .timeline li:not(.is-linked) { opacity: .38; }
 .timeline li.is-linked { background: rgba(195, 39, 43, .07); border-radius: 8px; }
 .timeline li.is-linked .timeline__time {
   border-color: var(--cinnabar);
@@ -648,22 +647,14 @@ body {
 .sources li { font-size: .82rem; line-height: 1.9; color: #8C9BA6; letter-spacing: .02em; }
 .board__note { margin-top: 12px; font-size: .82rem; color: #8C9BA6; letter-spacing: .04em; line-height: 1.8; }
 
-/* ---------- 入场动效（CSS 滚动驱动；不支持的浏览器内容直接可见） ---------- */
-@media (prefers-reduced-motion: no-preference) {
-  @supports (animation-timeline: view()) {
-    .reveal {
-      animation: slop-fade-up linear both;
-      animation-timeline: view();
-      animation-range: entry 15% cover 35%;
-    }
-  }
-}
-@keyframes slop-fade-up {
-  from { opacity: 0; translate: 0 28px; }
-  to { opacity: 1; translate: 0 0; }
-}
+/* ---------- 入场动效（IntersectionObserver 版，见 main.js） ---------- */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity .9s ease, transform .9s ease; }
+.reveal.is-visible { opacity: 1; transform: translateY(0); }
 
 /* ---------- 减少动效 ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+}
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .mc__track { transition: none; }
@@ -859,7 +850,7 @@ body {
         他们把中原的读书声，一路背进了南方的群山。</p>
 
       <!-- 迁徙路线地图（示意，与轮播双向联动） -->
-      <div class="map-wrap reveal">
+      <div class="map-wrap">
         <div class="map-stage" id="mapStage">
           <button class="map-stage__btn is-active" data-idx="0">西晋末 · 南渡</button>
           <button class="map-stage__btn" data-idx="1">唐末 · 入赣闽</button>
@@ -870,7 +861,7 @@ body {
         <p class="img-note">迁徙路线为示意，据客家迁徙史通行表述简绘；点击上方阶段或等轮播翻页，地图与故事同步。</p>
       </div>
 
-      <div class="migrate-carousel reveal" id="migrateCarousel">
+      <div class="migrate-carousel" id="migrateCarousel">
         <div class="mc__track" id="mcTrack">
           <div class="mc__slide">
             <div class="mc__img" data-bg="assets/img/migrate-zhongyuan.jpg"></div>
@@ -922,7 +913,7 @@ body {
       <p class="chapter__lead reveal">泥土砌成的家书，一封写了千年。<br>前塘后屋，天圆地方，一围之内就是一族。</p>
 
       <!-- 实景横幅 -->
-      <figure class="banner reveal">
+      <figure class="banner">
         <picture class="banner__pic">
           <source type="image/webp" srcset="assets/img/weilongwu.webp">
           <img src="assets/img/weilongwu.jpg" alt="梅州客家民居群航拍" width="1100" height="839" loading="lazy" decoding="async">
@@ -1046,12 +1037,12 @@ body {
       <h2 class="chapter__title">崇文重教</h2>
       <p class="chapter__lead reveal">围屋的上堂，白日祭祖，夜里读书。<br>一族的书声，就是一个家族的运气。</p>
 
-      <blockquote class="motto reveal">
+      <blockquote class="motto">
         <p><span class="line">「地瘦栽松柏，</span><br><span class="line">家贫子读书。」</span></p>
         <cite>—— 客家祖训</cite>
       </blockquote>
 
-      <div class="prose reveal">
+      <div class="prose">
         <p>在梅州的山间，最气派的建筑常常不是祠堂，而是学堂。客家人把迁徙路上唯一的行李——读书的传统——供进了围屋：上堂是祖厅，也是蒙馆；楹联劝学，比门神更常换新。</p>
         <p>「一腹三翰院」的故事在大埔流传了三百年：一位客家母亲生下的三个儿子先后入翰林院。科举时代，梅州科甲连绵；近代以来，「文化之乡」「华侨之乡」「足球之乡」三块牌子，依然挂在城市门口。</p>
       </div>
@@ -1074,7 +1065,7 @@ body {
         </figure>
       </div>
 
-      <div class="badges reveal">
+      <div class="badges">
         <span class="badge">文化之乡</span>
         <span class="badge">华侨之乡</span>
         <span class="badge">足球之乡</span>
@@ -1116,7 +1107,7 @@ body {
       </div>
 
       <!-- 7 项全名单（逐项核实，见页脚来源） -->
-      <details class="ich-list reveal">
+      <details class="ich-list">
         <summary>梅州 7 项国家级非遗 · 全名单 <span>逐项核实 · 点开看</span></summary>
         <table>
           <thead>
@@ -1318,7 +1309,7 @@ body {
       <p class="chapter__quote reveal">客家先民五次迁徙，把家安进群山；<br>这所大学七度迁徙，把书声背过烽火。</p>
 
       <!-- 双时间轴 -->
-      <div class="dual reveal">
+      <div class="dual">
         <div class="dual__col">
           <h3>梅州 · 围屋里的学堂</h3>
           <ul class="timeline">
@@ -1349,7 +1340,7 @@ body {
       </div>
 
       <!-- 留言板彩蛋 -->
-      <div class="board reveal">
+      <div class="board">
         <h3>留下来一句话吧 · 说说你的家乡</h3>
         <form id="boardForm">
           <input type="text" id="boardInput" maxlength="30" placeholder="写一句话（30字以内）" required>
@@ -1388,9 +1379,9 @@ body {
   </section>
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
-  <script src="assets/js/main.js?v=7"></script>
+  <script src="assets/js/main.js?v=10"></script>
   <script src="assets/js/interactions.js?v=11"></script>
-  <script src="assets/js/ambient.js?v=2"></script>
+  <script src="assets/js/ambient.js?v=4"></script>
   <script src="assets/js/loader.js?v=1"></script>
   <script defer src="assets/js/migration-map.js?v=3"></script>
 </body>
