@@ -167,33 +167,44 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* ---------- 柒章 · 双时间轴联动（提案 C） ---------- */
+  /* ---------- 柒章 · 双时间轴联动（提案 C） ----------
+     hover 任意节点：双侧同时点亮 + 各列下方说明行显示对应延伸句 */
   const dual = document.querySelector('.dual');
   if (dual) {
-    const caption = document.getElementById('dualCaption');
+    const cols = {
+      meizhou: { el: dual.querySelector('.col-detail[data-col="meizhou"]'),
+                 def: '把光标放到左列任意节点上——看每个年代的书声' },
+      gzhu: { el: dual.querySelector('.col-detail[data-col="gzhu"]'),
+              def: '把光标放到右列任意节点上——看百年弦歌的节点' }
+    };
     const LINKS = {
-      g1: '山间的蒙馆与广州的私立大学——崇文重教，一脉两枝',
-      g2: '新学在山乡扎根；烽火里，这所大学把书声背了七程',
-      g3: '五校合一：山里的学子从此有了直达的校门',
-      g4: '文化之都戴上桂冠，百年校庆点亮薪火'
+      g1: { meizhou: '上堂祭祖、下堂开蒙——「月光光」就是在这些蒙馆里学会的第一课',
+            gzhu: '陈炳权等白手起家——台山籍经济学家的办学梦，在广州落地' },
+      g2: { meizhou: '新学入梅：黄遵宪们办起的学堂，教出了叶剑英们',
+            gzhu: '广州沦陷后七次搬迁——课桌跟着师生，弦歌带遍粤北' },
+      g3: { meizhou: '山里的学子南下广州，成了合并后新大学源源不断的新生',
+            gzhu: '五所老校合并：师范学院、建筑、教育、高专，各有家底' },
+      g4: { meizhou: '保护区覆盖梅州全域，非遗走进景区与课堂',
+            gzhu: '明年，就是建校一百周年' }
     };
     const items = dual.querySelectorAll('.timeline li[data-link]');
-    const setLink = (key) => {
-      items.forEach((li) => li.classList.toggle('is-linked', li.dataset.link === key));
+    const setLink = (li) => {
+      items.forEach((el) => el.classList.toggle('is-linked', el === li));
       dual.classList.add('has-link');
-      if (caption) {
-        caption.textContent = LINKS[key];
-        caption.classList.add('is-show');
-      }
+      const key = li.dataset.link;
+      const side = li.closest('.dual__col').querySelector('.col-detail[data-col="meizhou"]') ? 'meizhou' : 'gzhu';
+      const other = side === 'meizhou' ? 'gzhu' : 'meizhou';
+      if (cols[side].el) cols[side].el.textContent = li.dataset.detail;
+      if (cols[other].el && LINKS[key] && LINKS[key][other]) cols[other].el.textContent = LINKS[key][other];
     };
     const clearLink = () => {
-      items.forEach((li) => li.classList.remove('is-linked'));
+      items.forEach((el) => el.classList.remove('is-linked'));
       dual.classList.remove('has-link');
-      if (caption) caption.classList.remove('is-show');
+      Object.values(cols).forEach((c) => { if (c.el) c.el.textContent = c.def; });
     };
     items.forEach((li) => {
-      li.addEventListener('pointerenter', () => setLink(li.dataset.link));
-      li.addEventListener('focus', () => setLink(li.dataset.link));
+      li.addEventListener('pointerenter', () => setLink(li));
+      li.addEventListener('focus', () => setLink(li));
       li.addEventListener('pointerleave', clearLink);
       li.addEventListener('blur', clearLink);
     });
