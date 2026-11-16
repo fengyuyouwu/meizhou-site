@@ -173,9 +173,9 @@ document.addEventListener('DOMContentLoaded', () => {
   if (dual) {
     const cols = {
       meizhou: { el: dual.querySelector('.col-detail[data-col="meizhou"]'),
-                 def: '把光标放到左列任意节点上——看每个年代的书声' },
+                 def: '点按或悬停左列任意节点——看每个年代的书声' },
       gzhu: { el: dual.querySelector('.col-detail[data-col="gzhu"]'),
-              def: '把光标放到右列任意节点上——看百年弦歌的节点' }
+              def: '点按或悬停右列任意节点——看百年弦歌的节点' }
     };
     const LINKS = {
       g1: { meizhou: '上堂祭祖、下堂开蒙——「月光光」就是在这些蒙馆里学会的第一课',
@@ -202,12 +202,26 @@ document.addEventListener('DOMContentLoaded', () => {
       dual.classList.remove('has-link');
       Object.values(cols).forEach((c) => { if (c.el) c.el.textContent = c.def; });
     };
+    /* 触屏没有 hover：点一下「钉住」，再点一下或点别处取消 */
+    let pinned = null;
     items.forEach((li) => {
-      li.addEventListener('pointerenter', () => setLink(li));
-      li.addEventListener('focus', () => setLink(li));
-      li.addEventListener('pointerleave', clearLink);
-      li.addEventListener('blur', clearLink);
+      li.addEventListener('pointerenter', () => { if (!pinned) setLink(li); });
+      li.addEventListener('pointerleave', () => { if (!pinned) clearLink(); });
+      li.addEventListener('focus', () => { if (!pinned) setLink(li); });
+      li.addEventListener('blur', () => { if (!pinned) clearLink(); });
+      li.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (pinned === li) { pinned = null; clearLink(); return; }
+        pinned = li;
+        setLink(li);
+      });
     });
+    document.addEventListener('pointerdown', (e) => {
+      if (!pinned) return;
+      if (e.target === pinned || pinned.contains(e.target)) return;
+      pinned = null;
+      clearLink();
+    }, true);
   }
 
   /* ---------- 柒章 · 文化名片生成器 ---------- */

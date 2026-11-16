@@ -18,7 +18,7 @@
 
   load('assets/lib/gsap/gsap.min.js')
     .then(() => load('assets/lib/gsap/ScrollTrigger.min.js'))
-    .then(() => load('assets/js/narrative.js?v=6'))
+    .then(() => load('assets/js/narrative.js?v=7'))
     .then(() => { if (window.__initNarrative) window.__initNarrative(); })
     .catch(() => { /* 加载失败：页面保持静态可读，不阻断任何内容 */ });
 })();

@@ -540,7 +540,7 @@ body {
 }
 .nursery figcaption { margin-top: 12px; font-size: .82rem; color: var(--ink-soft); }
 .dict__title { font-family: var(--font-kai); font-size: 1.3rem; letter-spacing: .15em; margin-bottom: 22px; }
-.dict__title span { font-size: .85rem; color: var(--ink-soft); font-family: var(--font-serif); }
+.dict__title span { font-size: .85rem; color: var(--ink-soft); font-family: var(--font-serif); letter-spacing: .05em; }
 .dict__grid { display: flex; justify-content: center; flex-wrap: wrap; gap: 18px; }
 .flip {
   width: 128px; height: 128px; border: 1.5px solid var(--earth);
@@ -610,7 +610,7 @@ body {
 .sources summary { cursor: pointer; padding: 12px 0; letter-spacing: .12em; color: #A7B2BB; font-size: .85rem; }
 .sources ol { padding-left: 22px; margin: 0 0 16px; }
 .sources li { font-size: .78rem; line-height: 1.9; color: #8C9BA6; letter-spacing: .02em; }
-.board__note { margin-top: 12px; font-size: .78rem; color: #8C9BA6; letter-spacing: .04em; line-height: 1.8; }
+.board__note { margin-top: 12px; font-size: .78rem; color: #9AA9B4; letter-spacing: .04em; line-height: 1.8; }
 
 /* ---------- 入场动效（CSS 滚动驱动；不支持的浏览器内容直接可见） ---------- */
 @media (prefers-reduced-motion: no-preference) {
@@ -653,15 +653,15 @@ body {
   .dual__bridge { writing-mode: horizontal-tb; border: none; padding: 8px 0; letter-spacing: .3em; }
 }
 @media (max-width: 560px) {
-  .topbar { padding: 8px 8px; }
+  .topbar { padding: 8px 6px; }
   .topbar__mark { font-size: .78rem; letter-spacing: .02em; white-space: nowrap; }
   .topbar__nav { white-space: nowrap; }
   .topbar__nav a {
     display: inline-flex; align-items: center; justify-content: center;
     min-width: 24px; min-height: 24px;
-    margin-left: 4px; font-size: .72rem; padding: 2px 3px;
+    margin-left: 1px; font-size: .72rem; padding: 2px 1px;
   }
-  .hero__credit { font-size: .6rem; letter-spacing: .04em; }
+  .hero__credit { font-size: .72rem; letter-spacing: .04em; }
   .mc__img { height: 220px; }
   .map-box { height: 330px; }
   .plan-dots { display: none; }

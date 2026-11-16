@@ -70,18 +70,28 @@ window.__initNarrative = function () {
   const dual = document.querySelector('.dual');
   if (dual) {
     const cols = dual.querySelectorAll('.dual__col');
-    gsap.from(cols[0] ? cols[0].querySelectorAll('.timeline li') : [], {
-      x: -44, opacity: 0, duration: 0.8, stagger: 0.12, ease: 'power2.out',
-      scrollTrigger: { trigger: dual, start: 'top 68%' }
+    const left = cols[0] ? cols[0].querySelectorAll('.timeline li') : [];
+    const right = cols[1] ? cols[1].querySelectorAll('.timeline li') : [];
+    /* 用 set + to 显式给出终点：from() 会把「创建那一刻的 computed opacity」
+       当成终点，只要那一刻读到 0（样式竞态/滚动位置未就绪），元素就永远停在 0。 */
+    gsap.set(left, { x: -44, opacity: 0 });
+    gsap.set(right, { x: 44, opacity: 0 });
+    gsap.to(left, {
+      x: 0, opacity: 1, duration: 0.8, stagger: 0.12, ease: 'power2.out',
+      scrollTrigger: { trigger: dual, start: 'top 68%', once: true }
     });
-    gsap.from(cols[1] ? cols[1].querySelectorAll('.timeline li') : [], {
-      x: 44, opacity: 0, duration: 0.8, stagger: 0.12, ease: 'power2.out',
-      scrollTrigger: { trigger: dual, start: 'top 68%' }
+    gsap.to(right, {
+      x: 0, opacity: 1, duration: 0.8, stagger: 0.12, ease: 'power2.out',
+      scrollTrigger: { trigger: dual, start: 'top 68%', once: true }
     });
-    gsap.from(dual.querySelector('.dual__bridge'), {
-      opacity: 0, scale: 0.85, duration: 1, ease: 'power2.out',
-      scrollTrigger: { trigger: dual, start: 'top 58%' }
-    });
+    const bridge = dual.querySelector('.dual__bridge');
+    if (bridge) {
+      gsap.set(bridge, { opacity: 0, scale: 0.85 });
+      gsap.to(bridge, {
+        opacity: 1, scale: 1, duration: 1, ease: 'power2.out',
+        scrollTrigger: { trigger: dual, start: 'top 58%', once: true }
+      });
+    }
   }
 
   /* ---------- 柒章结语：三行逐行浮现（全站情绪落点） ---------- */
